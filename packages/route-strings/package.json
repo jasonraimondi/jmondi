@@ -1,0 +1,12 @@
+{
+  "name": "@jmondi/route-strings",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Jason Raimondi",
+  "license": "ISC"
+}
