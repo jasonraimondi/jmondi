@@ -11,5 +11,5 @@ it("creates templates from input params", () => {
   expect(new Route<{ id: number }>("/user/:id").create({ id: 1 })).toBe("/user/1");
   expect(new Route<{ id: number }>("/user/:id/comments").create({ id: 1 })).toBe("/user/1/comments");
   expect(new Route("/user/:user/comments/:comment").create({ user: 1, comment: "something" })).toBe("/user/1/comments/something");
-  expect(new Route<{ user: number; comment: string }>("/user/:user/comments/:comment").create({ user: 1, comment: "something" })).toBe("/user/1/comments/something");
+  expect(new Route<{ user: number, comment: string }>("/user/:user/comments/:comment").create({ user: 2, comment: "else" })).toBe("/user/2/comments/else");
 });

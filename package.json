@@ -2,13 +2,15 @@
   "name": "jmondi",
   "version": "1.0.0",
   "description": "",
+  "author": "Jason Raimondi",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-  "author": "Jason Raimondi",
-  "license": "MIT",
   "devDependencies": {
+    "@swc/cli": "^0.1.46",
+    "@swc/core": "^1.2.76",
     "@types/jest": "^27.0.0",
     "@types/node": "^16.4.13",
     "jest": "^27.0.6",
