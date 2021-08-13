@@ -1,16 +1,23 @@
 import { autoUpdater, BrowserWindow, BrowserWindowConstructorOptions, screen } from "electron";
-import { join } from "path";
 
 export const environment = {
   isMac: process.platform === "darwin",
   isDev: process.env.NODE_ENV !== "production",
 };
 
-export class WindowManager {
-  private windows: Map<string, BrowserWindow> = new Map();
+type Config = {
+  mainWindowUrl: string;
+  shouldAutoUpdate?: boolean;
+}
 
-  constructor(private mainWindowUrl: string) {
-    autoUpdater.checkForUpdates();
+export class WindowManager {
+  private readonly windows: Map<string, BrowserWindow> = new Map();
+  private readonly mainWindowUrl: string;
+
+  constructor(config: Config) {
+    this.mainWindowUrl = config.mainWindowUrl;
+
+    if (config.shouldAutoUpdate) autoUpdater.checkForUpdates();
   }
 
   reload(): void {
@@ -47,10 +54,6 @@ export class WindowManager {
       minHeight: 400,
       minWidth: 500,
       ...options,
-      webPreferences: {
-        preload: join(__dirname, "../renderer/preload.js"),
-        ...options.webPreferences,
-      },
     };
 
     const { height } = screen.getPrimaryDisplay().workAreaSize;
@@ -85,12 +88,7 @@ export class WindowManager {
   }
 
   private get windowKeys(): string[] {
-    const ids = [];
-    for (const id of Array.from(this.windows.keys())) {
-      ids.push(id);
-    }
-    console.log({ ids });
-    return ids;
+    return Array.from(this.windows.keys()).map(id => id);
   }
 
   private get lastWindow(): BrowserWindow | undefined {
