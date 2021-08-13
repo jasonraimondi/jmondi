@@ -1,0 +1,24 @@
+{
+  "name": "@jmondi/electron-window",
+  "version": "1.0.0-rc.0",
+  "author": "Jason Raimondi <jason@raimondi.us>",
+  "main": "dist/browser-window.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "test": "jest",
+    "swc": "swc ./src -d ./dist --ignore ./src/**/*.spec.*",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "peerDependencies": {
+    "electron": ">13"
+  },
+  "devDependencies": {
+    "electron": "^13.1.9"
+  },
+  "description": ""
+}
