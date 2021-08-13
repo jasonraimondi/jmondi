@@ -36,9 +36,3 @@ console.log(ROUTES.users.show.create({ id: 1 }));
 console.log(ROUTES.users.deeplink.create({ id: 1, something: "magic", here: 2 }));
 // /users/1/magic/2
 ```
-
-## Publishing
-
-```bash
-pnpm publish --access public
-```
