@@ -1,6 +1,6 @@
 {
   "name": "@jmondi/route-strings",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0-rc.2",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "description": "",
   "main": "dist/routes.js",
@@ -10,8 +10,9 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "swc ./src -d ./dist --ignore ./src/**/*.spec.*",
-    "prepublish": "npm run build"
+    "swc": "swc ./src -d ./dist --ignore ./src/**/*.spec.*",
+    "build": "tsc",
+    "prepublish": "pnpm build"
   },
   "keywords": [],
   "license": "MIT"
