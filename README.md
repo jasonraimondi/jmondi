@@ -1,9 +1,10 @@
 # @jmondi/packages
 
-## Packages List
+## List of Packages
 
-* `npm install @jmondi/electron-window` [electron-window](./packages/electron-window)
-* `npm install @jmondi/route-strings` [route-strings](./packages/route-strings)
+* `@jmondi/electron-window` [electron-window](./packages/electron-window)
+* `@jmondi/route-strings` [route-strings](./packages/route-strings)
+* `@jmondi/browser-storage` [browser-storage](./packages/browser-storage)
 
 ## Publishing Packages
 

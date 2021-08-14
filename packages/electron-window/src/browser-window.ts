@@ -5,32 +5,31 @@ export const environment = {
   isDev: process.env.NODE_ENV !== "production",
 };
 
-type Config = {
-  mainWindowUrl: string;
+export type Config = {
+  mainUrl: string;
   shouldAutoUpdate?: boolean;
 }
 
 export class WindowManager {
-  private readonly windows: Map<string, BrowserWindow> = new Map();
-  private readonly mainWindowUrl: string;
+  private readonly windows = new Map<string, BrowserWindow>();
+  private readonly mainUrl: string;
 
   constructor(config: Config) {
-    this.mainWindowUrl = config.mainWindowUrl;
-
+    this.mainUrl = config.mainUrl;
     if (config.shouldAutoUpdate) autoUpdater.checkForUpdates();
   }
 
-  reload(): void {
+  async reload(): Promise<void> {
     const window = BrowserWindow.getFocusedWindow();
     if (window) {
-      window.loadURL(this.mainWindowUrl);
+      await window.loadURL(this.mainUrl);
     }
   }
 
-  reloadAll() {
-    this.windows.forEach((window: BrowserWindow, _id: string) => {
-      window.loadURL(this.mainWindowUrl);
-    });
+  async reloadAll(): Promise<void> {
+    for (const window of this.windows.values()) {
+      await window.loadURL(this.mainUrl);
+    }
   }
 
   async focusOrCreate(): Promise<void> {
@@ -42,9 +41,9 @@ export class WindowManager {
     }
   }
 
-  async createWindow(options: Partial<BrowserWindowConstructorOptions> = {}): Promise<BrowserWindow> {
+  async createWindow(options?: Partial<BrowserWindowConstructorOptions>): Promise<BrowserWindow> {
     const browserOptions: BrowserWindowConstructorOptions = {
-      title: "Default Window",
+      title: "@jmondi/electron-window",
       width: 1440,
       height: 900,
       frame: !environment.isMac,
@@ -80,7 +79,7 @@ export class WindowManager {
       this.windows.delete(windowId);
     });
 
-    await window.loadURL(this.mainWindowUrl);
+    await window.loadURL(this.mainUrl);
 
     this.windows.set(windowId, window);
 
