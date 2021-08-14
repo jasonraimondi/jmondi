@@ -1,6 +1,6 @@
 {
   "name": "@jmondi/electron-window",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "main": "dist/browser-window.js",
   "files": [
@@ -15,7 +15,7 @@
   "keywords": [],
   "license": "MIT",
   "peerDependencies": {
-    "electron": ">13"
+    "electron": ">13.0.0"
   },
   "devDependencies": {
     "electron": "^13.1.9"
