@@ -1,0 +1,18 @@
+{
+  "name": "@jmondi/_sample",
+  "version": "1.0.0-rc.0",
+  "author": "Jason Raimondi <jason@raimondi.us>",
+  "main": "dist/example.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "test": "jest",
+    "swc": "swc ./src -d ./dist --ignore ./src/**/*.spec.*",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "description": ""
+}
