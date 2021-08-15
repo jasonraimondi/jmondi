@@ -1,8 +1,15 @@
+function sortInput(map: Record<string, number>) {
+  return Object.fromEntries(
+    Object.entries(map).sort(([, a], [, b]) => a - b),
+  );
+}
+
 export function mobileFirst(map: Record<string, number>) {
-  const result: Record<string, string> = {};
+  const sortedInput = sortInput(map);
   let cnt = 0;
-  const values = Object.values(map);
-  const entries = Object.entries(map);
+  const values = Object.values(sortedInput);
+  const entries = Object.entries(sortedInput);
+  const result: Record<string, string> = {};
 
   for (const [key, breakpoint] of entries) {
     const nextBreakpoint = values[cnt + 1];

@@ -23,6 +23,17 @@ const result = {
   '--xxl': `(min-width: ${map.xxl}px)`,
 };
 
-it("works example", () => {
+it("outputs custom media queries object built for mobile first designs", () => {
   expect(mobileFirst(map)).toEqual(result);
+});
+
+it("sorts mixed inputs before creating custom media queries", () => {
+  expect(mobileFirst({
+    xs: 420,
+    xl: 1280,
+    xxl: 1536,
+    sm: 640,
+    md: 768,
+    lg: 1024,
+  })).toEqual(result);
 });
