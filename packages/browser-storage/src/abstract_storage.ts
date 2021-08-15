@@ -3,7 +3,7 @@ export abstract class AbstractStorage {
 
   readonly storagePrefix: string;
 
-  protected constructor(storagePrefix: string = "@jmondi:") {
+  constructor(storagePrefix: string = "@jmondi:") {
     this.storagePrefix = storagePrefix;
   }
 
