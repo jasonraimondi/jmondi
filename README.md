@@ -14,7 +14,7 @@ Sharing some of my resuable packages in this monorepo
 
 * Wrapper function for electron's BrowserWindow.
 
-#### `@jmondi/mobile-first` [link](./packages/mobile-first)
+#### `@jmondi/mobile-first` [link](./packages/custom-media-mobile-first)
 
 * Helper for adding custom media queries to PostCSS.
 

@@ -2,7 +2,7 @@ type CustomMediaInput = Record<string, number>;
 // type CustomMediaResponseKey = `--${string}`;
 type CustomMediaResponse = Record<string, string>;
 
-export function mobileFirst(map: CustomMediaInput): CustomMediaResponse {
+export function generateMediaQueries(map: CustomMediaInput): CustomMediaResponse {
   const result: CustomMediaResponse = {};
 
   const sortedInput = sortInput(map);

@@ -1,7 +1,7 @@
-import { mobileFirst } from "./mobile_first";
+import { generateMediaQueries } from "./generate_media_queries";
 
 it("outputs custom media queries object built for mobile first designs", () => {
-  expect(mobileFirst({
+  expect(generateMediaQueries({
     sm: 600,
     md: 800,
     lg: 1000,
@@ -20,9 +20,8 @@ it("outputs custom media queries object built for mobile first designs", () => {
   });
 });
 
-
 it("sorts mixed inputs before creating custom media queries", () => {
-  expect(mobileFirst({
+  expect(generateMediaQueries({
     tablet: 800,
     desktop: 1400,
     phone: 400,
