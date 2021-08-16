@@ -1,24 +1,24 @@
-function sortInput(map: Record<string, number>) {
-  return Object.fromEntries(
-    Object.entries(map).sort(([, a], [, b]) => a - b),
-  );
-}
+type CustomMediaInput = Record<string, number>;
+// type CustomMediaResponseKey = `--${string}`;
+type CustomMediaResponse = Record<string, string>;
 
-export function mobileFirst(map: Record<string, number>) {
+export function mobileFirst(map: CustomMediaInput): CustomMediaResponse {
+  const result: CustomMediaResponse = {};
+
   const sortedInput = sortInput(map);
-  let cnt = 0;
   const values = Object.values(sortedInput);
   const entries = Object.entries(sortedInput);
-  const result: Record<string, string> = {};
 
+  let cnt = 0;
   for (const [key, breakpoint] of entries) {
     const nextBreakpoint = values[cnt + 1];
     if (cnt === 0) {
-      result[`--${key}`] = `(min-width: ${breakpoint}px)`;
+      result[`--${key}`] = `(min-width: 0px)`;
+      result[`--${key}-only`] = `(max-width: ${breakpoint}px)`;
       if (nextBreakpoint) result[`--${key}-only`] = `(max-width: ${(nextBreakpoint - 1)}px)`;
     } else if (nextBreakpoint) {
-      result[`--${key}`] = `(min-width: ${breakpoint}px)`;
       result[`--${key}-only`] = `(min-width: ${(breakpoint)}px) and (max-width: ${(nextBreakpoint - 1)}px)`;
+      result[`--${key}`] = `(min-width: ${breakpoint}px)`;
     } else {
       result[`--${key}`] = `(min-width: ${breakpoint}px)`;
     }
@@ -28,3 +28,8 @@ export function mobileFirst(map: Record<string, number>) {
   return result;
 }
 
+function sortInput(map: CustomMediaInput) {
+  return Object.fromEntries(
+    Object.entries(map).sort(([, a], [, b]) => a - b),
+  );
+}

@@ -1,39 +1,36 @@
 import { mobileFirst } from "./mobile_first";
 
-const map = {
-  xs: 420,
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
-  xxl: 1536,
-}
-
-const result = {
-  '--xs-only': `(max-width: ${(map.sm - 1)}px)`,
-  '--xs': `(min-width: ${map.xs}px)`,
-  '--sm-only': `(min-width: ${map.sm}px) and (max-width: ${(map.md - 1)}px)`,
-  '--sm': `(min-width: ${map.sm}px)`,
-  '--md-only': `(min-width: ${map.md}px) and (max-width: ${(map.lg - 1)}px)`,
-  '--md': `(min-width: ${map.md}px)`,
-  '--lg-only': `(min-width: ${map.lg}px) and (max-width: ${(map.xl - 1)}px)`,
-  '--lg': `(min-width: ${map.lg}px)`,
-  '--xl-only': `(min-width: ${map.xl}px) and (max-width: ${(map.xxl - 1)}px)`,
-  '--xl': `(min-width: ${map.xl}px)`,
-  '--xxl': `(min-width: ${map.xxl}px)`,
-};
-
 it("outputs custom media queries object built for mobile first designs", () => {
-  expect(mobileFirst(map)).toEqual(result);
+  expect(mobileFirst({
+    sm: 600,
+    md: 800,
+    lg: 1000,
+    xl: 1200,
+    xxl: 1400,
+  })).toEqual({
+    '--sm': `(min-width: 0px)`,
+    '--sm-only': `(max-width: 799px)`,
+    '--md': `(min-width: 800px)`,
+    '--md-only': `(min-width: 800px) and (max-width: 999px)`,
+    '--lg': `(min-width: 1000px)`,
+    '--lg-only': `(min-width: 1000px) and (max-width: 1199px)`,
+    '--xl': `(min-width: 1200px)`,
+    '--xl-only': `(min-width: 1200px) and (max-width: 1399px)`,
+    '--xxl': `(min-width: 1400px)`,
+  });
 });
+
 
 it("sorts mixed inputs before creating custom media queries", () => {
   expect(mobileFirst({
-    xs: 420,
-    xl: 1280,
-    xxl: 1536,
-    sm: 640,
-    md: 768,
-    lg: 1024,
-  })).toEqual(result);
+    tablet: 800,
+    desktop: 1400,
+    phone: 400,
+  })).toEqual({
+    '--phone': `(min-width: 0px)`,
+    '--phone-only': `(max-width: 799px)`,
+    '--tablet': `(min-width: 800px)`,
+    '--tablet-only': `(min-width: 800px) and (max-width: 1399px)`,
+    '--desktop': `(min-width: 1400px)`,
+  });
 });
