@@ -21,6 +21,7 @@ export function generateMediaQueries(map: CustomMediaInput): CustomMediaResponse
       result[`--${key}`] = `(min-width: ${breakpoint}px)`;
     } else {
       result[`--${key}`] = `(min-width: ${breakpoint}px)`;
+      result[`--${key}-only`] = result[`--${key}`];
     }
     cnt++;
   }

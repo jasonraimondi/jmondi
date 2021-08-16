@@ -17,6 +17,7 @@ it("outputs custom media queries object built for mobile first designs", () => {
     '--xl': `(min-width: 1200px)`,
     '--xl-only': `(min-width: 1200px) and (max-width: 1399px)`,
     '--xxl': `(min-width: 1400px)`,
+    '--xxl-only': `(min-width: 1400px)`,
   });
 });
 
@@ -31,5 +32,6 @@ it("sorts mixed inputs before creating custom media queries", () => {
     '--tablet': `(min-width: 800px)`,
     '--tablet-only': `(min-width: 800px) and (max-width: 1399px)`,
     '--desktop': `(min-width: 1400px)`,
+    '--desktop-only': `(min-width: 1400px)`,
   });
 });
