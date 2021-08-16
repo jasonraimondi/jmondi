@@ -1,6 +1,6 @@
 {
   "name": "@jmondi/mobile-first",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "main": "dist/generate_media_queries.js",
   "files": [
