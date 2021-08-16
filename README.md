@@ -1,5 +1,7 @@
 # @jmondi/packages
 
+[![Unit Tests](https://github.com/jasonraimondi/jmondi/actions/workflows/unit_test.yaml/badge.svg)](https://github.com/jasonraimondi/jmondi/actions/workflows/unit_test.yaml)
+
 Sharing some of my resuable packages in this monorepo
 
 ## List of Packages
