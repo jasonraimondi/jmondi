@@ -8,7 +8,6 @@
     "target": "esnext",
     "module": "commonjs",
     "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
-    "outDir": "dist",
 
     /* Strict Type-Checking Options */
     "strict": true,
@@ -31,11 +30,6 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["src/*"],
-      "~test/*": ["test/*"]
-    },
 
     /* Experimental Options */
     "experimentalDecorators": true,

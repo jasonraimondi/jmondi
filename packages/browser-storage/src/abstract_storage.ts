@@ -23,7 +23,7 @@ export abstract class AbstractStorage {
     return null;
   }
 
-  set(key: string, value: any): boolean {
+  set(key: string, value?: any): boolean {
     if (value === undefined) {
       value = null;
     } else {
