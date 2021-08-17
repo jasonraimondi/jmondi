@@ -2,12 +2,14 @@ name: Unit Tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ * ]
   pull_request:
-    branches: [ master ]
+    branches: [ * ]
 
 jobs:
   build:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+
     name: "${{ matrix.os }} | Node ${{ matrix.node }}"
 
     runs-on: ${{ matrix.os }}
@@ -32,5 +34,9 @@ jobs:
         run: curl -f https://get.pnpm.io/v6.7.js | node - add --global pnpm@6
       - name: pnpm Build
         run: pnpm install --frozen-lockfile
-      - name: Unit Test
-        run: pnpm test
+#      - name: Unit Test
+#        run: pnpm test
+      - uses: artiomtr/jest-coverage-report-action@v2.0-rc.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          test-script: pnpm test --coverage
