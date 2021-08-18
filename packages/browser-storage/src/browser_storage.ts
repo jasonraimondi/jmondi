@@ -46,3 +46,11 @@ export abstract class AbstractStorage {
     this.adapter.clear();
   }
 }
+
+export class LocalStorage extends AbstractStorage {
+  readonly adapter = window.localStorage;
+}
+
+export class SessionStorage extends AbstractStorage {
+  readonly adapter = window.sessionStorage;
+}

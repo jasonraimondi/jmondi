@@ -1,8 +1,8 @@
 {
   "name": "@jmondi/browser-storage",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Jason Raimondi <jason@raimondi.us>",
-  "main": "dist/index.js",
+  "main": "dist/browser_storage.js",
   "files": [
     "dist",
     "src"

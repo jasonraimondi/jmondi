@@ -1,6 +1,6 @@
-import { AbstractStorage } from "./abstract_storage";
+import { AbstractStorage } from "./browser_storage";
 
-class MockStorage implements Storage {
+class MockStorageProvider implements Storage {
   private storage = new Map<string, string | null>();
 
   clear(): void {
@@ -29,7 +29,7 @@ class MockStorage implements Storage {
 }
 
 class TestStorage extends AbstractStorage {
-  constructor(public readonly adapter = new MockStorage(), namespace?: string) {
+  constructor(public readonly adapter = new MockStorageProvider(), namespace?: string) {
     super(namespace);
   }
 }
@@ -66,7 +66,7 @@ describe("abstract storage spec", () => {
   });
 
   it("namespaces storage", () => {
-    const mockStorage = new MockStorage();
+    const mockStorage = new MockStorageProvider();
     testStorage = new TestStorage(mockStorage, "@testing:");
 
     mockStorage.setItem("1", "the wrong value");
@@ -78,7 +78,7 @@ describe("abstract storage spec", () => {
   });
 
   it("catches error", () => {
-    const mockStorage = new MockStorage();
+    const mockStorage = new MockStorageProvider();
     testStorage = new TestStorage(mockStorage);
 
     const throwable = () => {
