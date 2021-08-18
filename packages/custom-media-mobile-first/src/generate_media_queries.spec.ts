@@ -8,8 +8,8 @@ it("outputs custom media queries object built for mobile first designs", () => {
     xl: 1200,
     xxl: 1400,
   })).toEqual({
-    '--sm': `(min-width: 0px)`,
-    '--sm-only': `(max-width: 799px)`,
+    '--sm': `(min-width: 600px)`,
+    '--sm-only': `(min-width: 600px) and (max-width: 799px)`,
     '--md': `(min-width: 800px)`,
     '--md-only': `(min-width: 800px) and (max-width: 999px)`,
     '--lg': `(min-width: 1000px)`,
@@ -27,8 +27,8 @@ it("sorts mixed inputs before creating custom media queries", () => {
     desktop: 1400,
     phone: 400,
   })).toEqual({
-    '--phone': `(min-width: 0px)`,
-    '--phone-only': `(max-width: 799px)`,
+    '--phone': `(min-width: 400px)`,
+    '--phone-only': `(min-width: 400px) and (max-width: 799px)`,
     '--tablet': `(min-width: 800px)`,
     '--tablet-only': `(min-width: 800px) and (max-width: 1399px)`,
     '--desktop': `(min-width: 1400px)`,

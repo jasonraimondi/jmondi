@@ -24,8 +24,8 @@ const result = generateMediaQueries({
 console.log(result);
 
 // {
-//   '--phone': `(min-width: 0px)`,
-//   '--phone-only': `(max-width: 799px)`,
+//   '--phone': `(min-width: 400px)`,
+//   '--phone-only': `(min-width: 400px) and (max-width: 799px)`,
 //   '--tablet': `(min-width: 800px)`,
 //   '--tablet-only': `(min-width: 800px) and (max-width: 1399px)`,
 //   '--desktop': `(min-width: 1400px)`,
@@ -82,10 +82,10 @@ Then in your css files
 Will output 
 
 ```css
-@media (min-width: 0px) {
+@media (min-width: 400px) {
   html { background-color: teal; }
 }
-@media (max-width: 799px) {
+@media (min-width: 400px) and (max-width: 799px) {
   html { color: white; }
 }
 @media (min-width: 800px) {
