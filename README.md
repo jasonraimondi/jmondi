@@ -18,6 +18,8 @@ Sharing some of my resuable packages in this monorepo
 
 * Helper for adding custom media queries to PostCSS.
 
+#### `@jmondi/form-validator` [link](./packages/form-validator)
+
 #### `@jmondi/oauth2-server` [link](https://github.com/jasonraimondi/ts-oauth2-server)
 
 * A standards compliant implementation of an OAuth 2.0 authorization server for Node that utilizes JWT and Proof Key for Code Exchange (PKCE), written in TypeScript. 
