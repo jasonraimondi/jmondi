@@ -52,7 +52,7 @@ errors = validateForm({ schema, data });
 
 #### Svelte Example
 
-```sveltehtml
+```html
 <script lang="ts">
     import joi from "joi";
     import { createForm, validateForm } from "@jmondi/form-validator";
