@@ -82,7 +82,7 @@ describe("abstract storage spec", () => {
     testStorage = new TestStorage(mockStorage);
 
     const throwable = () => {
-      throw new Error("yep");
+      throw new Error();
     };
     JSON.parse = throwable;
     mockStorage.setItem = throwable;
