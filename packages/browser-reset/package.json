@@ -1,6 +1,6 @@
 {
   "name": "@jmondi/browser-reset",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "main": "dist/example.js",
   "files": [
