@@ -24,6 +24,7 @@ importers:
       '@jmondi/mobile-first': workspace:^1.0.2
       autoprefixer: ^10.3.2
       cssnano: ^5.0.8
+      normalize.css: ^8.0.1
       postcss: ^8.3.6
       postcss-cli: ^8.3.1
       postcss-custom-media: ^8.0.0
@@ -34,6 +35,7 @@ importers:
       '@jmondi/mobile-first': link:../custom-media-mobile-first
       autoprefixer: 10.3.2_postcss@8.3.6
       cssnano: 5.0.8_postcss@8.3.6
+      normalize.css: 8.0.1
       postcss: 8.3.6
       postcss-cli: 8.3.1_postcss@8.3.6
       postcss-custom-media: 8.0.0_postcss@8.3.6
@@ -2955,6 +2957,10 @@ packages:
   /normalize-url/6.1.0:
     resolution: {integrity: sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==}
     engines: {node: '>=10'}
+    dev: true
+
+  /normalize.css/8.0.1:
+    resolution: {integrity: sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==}
     dev: true
 
   /npm-conf/1.1.3:

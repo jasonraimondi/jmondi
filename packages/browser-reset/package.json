@@ -1,6 +1,6 @@
 {
   "name": "@jmondi/browser-reset",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0-rc.1",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "main": "dist/example.js",
   "files": [
@@ -18,6 +18,7 @@
     "@jmondi/mobile-first": "workspace:^1.0.2",
     "autoprefixer": "^10.3.2",
     "cssnano": "^5.0.8",
+    "normalize.css": "^8.0.1",
     "postcss": "^8.3.6",
     "postcss-cli": "^8.3.1",
     "postcss-custom-media": "^8.0.0",
