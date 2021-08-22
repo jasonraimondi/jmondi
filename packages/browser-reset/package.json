@@ -1,0 +1,28 @@
+{
+  "name": "@jmondi/browser-reset",
+  "version": "1.0.0-rc.0",
+  "author": "Jason Raimondi <jason@raimondi.us>",
+  "main": "dist/example.js",
+  "files": [
+    "postcss.config.js",
+    "reset.css",
+    "src"
+  ],
+  "scripts": {
+    "build": "postcss -o reset.css src/reset.pcss"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "@jmondi/mobile-first": "workspace:^1.0.2",
+    "autoprefixer": "^10.3.2",
+    "cssnano": "^5.0.8",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "postcss-custom-media": "^8.0.0",
+    "postcss-import": "^14.0.2",
+    "postcss-mixins": "^8.1.0",
+    "postcss-nested": "^5.0.6"
+  }
+}
