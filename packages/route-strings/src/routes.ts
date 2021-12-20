@@ -17,3 +17,5 @@ export class Route<Params extends Record<string, string|number>> {
     return result;
   }
 }
+
+export const route = (template: string) => new Route(template);

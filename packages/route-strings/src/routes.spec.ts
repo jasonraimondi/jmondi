@@ -1,12 +1,15 @@
-import { Route } from "./routes";
+import { route, Route } from "./routes";
 
 it("returns the input templates", () => {
+  expect(route("/user").template).toBe("/user");
   expect(new Route("/user").template).toBe("/user");
+  expect(route("/user/:id").template).toBe("/user/:id");
   expect(new Route("/user/:id").template).toBe("/user/:id");
   expect(new Route("/user/:id/comments").template).toBe("/user/:id/comments");
 });
 
 it("creates templates from input params", () => {
+  expect(route("/user").create()).toBe("/user");
   expect(new Route("/user").create()).toBe("/user");
   expect(new Route<{ id: number }>("/user/:id").create({ id: 1 })).toBe("/user/1");
   expect(new Route<{ id: number }>("/user/:id/comments").create({ id: 1 })).toBe("/user/1/comments");
