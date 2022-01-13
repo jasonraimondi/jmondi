@@ -20,6 +20,8 @@ Sharing some of my resuable packages in this monorepo
 
 #### [`@jmondi/form-validator`](./packages/form-validator)
 
+* Form validation helper functions for joi. 
+
 #### [`@jmondi/oauth2-server`](https://github.com/jasonraimondi/ts-oauth2-server)
 
 * A standards compliant implementation of an OAuth 2.0 authorization server for Node that utilizes JWT and Proof Key for Code Exchange (PKCE), written in TypeScript. 
