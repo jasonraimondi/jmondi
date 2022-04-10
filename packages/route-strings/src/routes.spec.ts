@@ -1,5 +1,11 @@
 import { route, Route } from "./routes";
 
+it("supports camel case template ids", () => {
+  const r = new Route("/user/:userId/uploads");
+  expect(r.template).toBe("/user/:userId/uploads");
+  expect(r.create({ userId: "1" })).toBe("/user/1/uploads");
+});
+
 it("returns the input templates", () => {
   expect(route("/user").template).toBe("/user");
   expect(new Route("/user").template).toBe("/user");

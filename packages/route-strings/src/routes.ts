@@ -5,7 +5,7 @@ export class Route<Params extends Record<string, string|number>> {
   create(params?: Params) {
     let result = this.template;
 
-    const matches = result.match(/:[a-z_-]+/g) ?? [];
+    const matches = result.match(/:[a-zA-Z_-]+/g) ?? [];
 
     if (!params || matches.length === 0) return result;
 
