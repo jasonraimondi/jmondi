@@ -26,9 +26,15 @@ Sharing some of my resuable packages in this monorepo
 
 * A standards compliant implementation of an OAuth 2.0 authorization server for Node that utilizes JWT and Proof Key for Code Exchange (PKCE), written in TypeScript. 
 
+#### [`@jmondi/prisma-generator-nestjs-graphql-strict`](https://github.com/jasonraimondi/prisma-generator-nestjs-graphql-strict)
+
+* Generate strict nestjs graphql entities from prisma models
+
 #### [`@jmondi/route-strings`](./packages/route-strings)
 
 * Manage and create typed route strings for your applications.
+
+
 
 ## Contributing
 
