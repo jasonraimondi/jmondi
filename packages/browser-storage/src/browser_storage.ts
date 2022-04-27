@@ -1,7 +1,7 @@
-import { CookieAdapter } from "./cookie_adapter";
+import cookies, { CookieAttributes } from "js-cookie";
 
 export abstract class AbstractStorage {
-  abstract readonly adapter: Storage | CookieAdapter;
+  abstract readonly adapter: Storage;
 
   readonly storagePrefix: string;
 
@@ -10,32 +10,14 @@ export abstract class AbstractStorage {
   }
 
   get<T>(key: string): T | null {
-    const item = this.adapter.getItem(this.storagePrefix + key);
-
-    if (!item || item === "null") {
-      return null;
-    }
-
-    try {
-      return JSON.parse(item);
-    } catch (e) {
-      console.log(e);
-    }
-
-    return null;
+    return fromStore<T>(this.adapter.getItem(this.storagePrefix + key));
   }
 
-  set(key: string, value?: any): boolean {
-    if (value === undefined) {
-      value = null;
-    } else {
-      value = JSON.stringify(value);
-    }
-
+  set(key: string, value?: unknown): boolean {
     try {
-      this.adapter.setItem(this.storagePrefix + key, value);
+      this.adapter.setItem(this.storagePrefix + key, toStore(value));
+      return true;
     } catch (e) {
-      console.log(e);
     }
     return false;
   }
@@ -57,7 +39,34 @@ export class SessionStorage extends AbstractStorage {
   readonly adapter = window.sessionStorage;
 }
 
-export class CookieStorage extends AbstractStorage {
-  readonly adapter = new CookieAdapter();
+export class CookieStorage {
+  get<T>(key: string): T | null {
+    return fromStore(cookies.get(key));
+  }
+
+  remove(key: string, options?: CookieAttributes): void {
+    cookies.remove(key, options);
+  }
+
+  set(key: string, value: string, options?: CookieAttributes): void {
+    cookies.set(key, toStore(value), options);
+  }
 }
 
+function toStore(value: unknown): string {
+  if (value === undefined) value = null;
+  return JSON.stringify(value);
+}
+
+function fromStore<T>(item: unknown): T | null {
+  if (typeof item !== "string" || item === "null") {
+    return null;
+  }
+
+  try {
+    return JSON.parse(item);
+  } catch (e) {
+  }
+
+  return null;
+}
