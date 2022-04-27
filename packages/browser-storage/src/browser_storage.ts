@@ -5,7 +5,7 @@ export abstract class AbstractStorage {
 
   readonly storagePrefix: string;
 
-  constructor(storagePrefix: string = "@jmondi:") {
+  constructor(storagePrefix: string = "") {
     this.storagePrefix = storagePrefix;
   }
 
@@ -40,16 +40,22 @@ export class SessionStorage extends AbstractStorage {
 }
 
 export class CookieStorage {
+  readonly storagePrefix: string;
+
+  constructor(storagePrefix: string = "") {
+    this.storagePrefix = storagePrefix;
+  }
+
   get<T>(key: string): T | null {
-    return fromStore(cookies.get(key));
+    return fromStore(cookies.get(this.storagePrefix + key));
   }
 
   remove(key: string, options?: CookieAttributes): void {
-    cookies.remove(key, options);
+    cookies.remove(this.storagePrefix + key, options);
   }
 
   set(key: string, value: string, options?: CookieAttributes): void {
-    cookies.set(key, toStore(value), options);
+    cookies.set(this.storagePrefix + key, toStore(value), options);
   }
 }
 
