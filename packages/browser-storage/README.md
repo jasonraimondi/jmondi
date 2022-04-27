@@ -45,3 +45,24 @@ console.log(sessionStorage.get("user1"));
 console.log(sessionStorage.get("user2"));
 // { email: "hermoine@hogwarts.com", name: "Hermoine" }
 ```
+
+### Cookie Storage
+
+Session storage is reset when the browser is closed.
+
+```typescript
+import type { CookieAttributes } from "js-cookie";
+import { CookieStorage } from "@jmondi/browser-storage";
+
+const cookieStorage = new CookieStorage();
+
+const cookieOptions: CookieAttributes = {};
+
+cookieStorage.set("user1", null, cookieOptions);
+cookieStorage.set("user2", { email: "hermoine@hogwarts.com", name: "Hermoine" });
+
+console.log(cookieStorage.get("user1"));
+// null
+console.log(cookieStorage.get("user2"));
+// { email: "hermoine@hogwarts.com", name: "Hermoine" }
+```
