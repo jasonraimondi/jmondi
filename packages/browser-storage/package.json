@@ -14,5 +14,11 @@
   },
   "keywords": [],
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "js-cookie": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.2"
+  }
 }

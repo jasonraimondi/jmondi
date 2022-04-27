@@ -1,5 +1,7 @@
+import { CookieAdapter } from "./cookie_adapter";
+
 export abstract class AbstractStorage {
-  abstract readonly adapter: Storage;
+  abstract readonly adapter: Storage | CookieAdapter;
 
   readonly storagePrefix: string;
 
@@ -54,3 +56,8 @@ export class LocalStorage extends AbstractStorage {
 export class SessionStorage extends AbstractStorage {
   readonly adapter = window.sessionStorage;
 }
+
+export class CookieStorage extends AbstractStorage {
+  readonly adapter = new CookieAdapter();
+}
+
