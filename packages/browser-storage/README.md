@@ -48,7 +48,7 @@ console.log(sessionStorage.get("user2"));
 
 ### Cookie Storage
 
-Session storage is reset when the browser is closed.
+Cookie storage is more configurable, see https://github.com/js-cookie/js-cookie#cookie-attributes for full options
 
 ```typescript
 import type { CookieAttributes } from "js-cookie";
