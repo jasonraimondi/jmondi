@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "test": "jest",
-    "swc": "swc ./src -d ./dist --ignore ./src/**/*.spec.*",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "rm -rf ./dist && pnpm test && pnpm build"
   },
   "keywords": [],
   "license": "MIT",
