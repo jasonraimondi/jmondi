@@ -8,7 +8,7 @@
     "src"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "vitest run",
     "build": "tsc",
     "prepublish": "rm -rf ./dist && pnpm test && pnpm build"
   },

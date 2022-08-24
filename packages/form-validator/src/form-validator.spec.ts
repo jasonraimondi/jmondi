@@ -1,3 +1,5 @@
+import { it, expect } from "vitest";
+
 import joi from "joi";
 
 import { createForm, validateForm } from "./form-validator";

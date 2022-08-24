@@ -8,7 +8,7 @@
     "src"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "vitest run",
     "swc": "swc ./src -d ./dist --ignore ./src/**/*.spec.*",
     "build": "tsc"
   },

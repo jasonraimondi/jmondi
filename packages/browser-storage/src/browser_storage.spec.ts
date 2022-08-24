@@ -1,3 +1,5 @@
+import { describe, beforeEach, it, expect } from "vitest";
+
 import { AbstractStorage } from "./browser_storage";
 
 class MockStorageProvider implements Storage {

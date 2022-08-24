@@ -1,3 +1,5 @@
+import { it, expect } from "vitest";
+
 import { route, Route } from "./routes";
 
 it("supports camel case template ids", () => {
