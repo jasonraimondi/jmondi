@@ -36,8 +36,6 @@ jobs:
     if: github.event_name == 'push' && (github.ref_name == 'master' || github.ref_name == 'next')
     needs: [ test ]
     runs-on: ubuntu-latest
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: pnpm/action-setup@v2
@@ -52,5 +50,9 @@ jobs:
       - run: pnpm i --frozen-lockfile --production false
       - if: github.ref_name == 'master'
         run: pnpm publish --recursive --filter="@jmondi/*" --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
       - if: github.ref_name == 'next'
         run: pnpm publish --recursive --filter="@jmondi/*" --access=public --publish-branch next --tag next
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
