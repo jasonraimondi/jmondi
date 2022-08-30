@@ -1,18 +1,23 @@
 {
   "name": "@jmondi/route-strings",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "description": "",
-  "main": "dist/routes.js",
+  "license": "MIT",
+  "main": "src/routes.ts",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
     "test": "vitest run",
+    "test:watch": "vitest",
     "build": "tsc",
     "prepublish": "rm -rf ./dist && pnpm test && pnpm build"
   },
-  "keywords": [],
-  "license": "MIT"
+  "publishConfig": {
+    "main": "dist/routes.js",
+    "private": false,
+    "license": "MIT"
+  }
 }
