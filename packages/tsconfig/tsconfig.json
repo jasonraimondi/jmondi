@@ -12,6 +12,9 @@
       "$test": ["test/*"]
     },
 
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
     /* Strict Type-Checking Options */
     "strict": true,
     "noImplicitAny": true,

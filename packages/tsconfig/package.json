@@ -1,6 +1,6 @@
 {
   "name": "@jmondi/tsconfig",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "description": "Default tsconfig.json",
   "main": "tsconfig.json",
