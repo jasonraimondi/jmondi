@@ -1,0 +1,26 @@
+{
+  "name": "@jmondi/http-err",
+  "version": "0.1.0",
+  "author": "Jason Raimondi <jason@raimondi.us>",
+  "description": "HttpErrors with status codes and context",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "tsc",
+    "prepublish": "rm -rf ./dist && pnpm test && pnpm build"
+  },
+  "publishConfig": {
+    "main": "dist/index.js",
+    "private": false,
+    "license": "MIT"
+  },
+  "devDependencies": {
+    "@jmondi/tsconfig": "workspace:*"
+  }
+}
