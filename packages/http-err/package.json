@@ -1,6 +1,6 @@
 {
   "name": "@jmondi/http-err",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "description": "HttpErrors with status codes and context",
   "license": "MIT",

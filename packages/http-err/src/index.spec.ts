@@ -24,8 +24,12 @@ it("HttpError defaults to 500 status", () => {
 });
 
 it("BadRequestError is a 400", () => {
-  const error = new BadRequestError();
+  const stackTrace = ["something happened", "something else happened", "another thing happened"]
+  const error = new BadRequestError("has custom message", stackTrace);
+
   expect(error.status).toBe(400);
+  expect(error.message).toBe("has custom message");
+  expect(error.context).toBe(stackTrace);
 });
 
 it("UnauthorizedError is a 401", () => {
