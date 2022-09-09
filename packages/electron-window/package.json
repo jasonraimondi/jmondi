@@ -1,6 +1,6 @@
 {
   "name": "@jmondi/electron-window",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "main": "dist/browser-window.js",
   "files": [
@@ -8,9 +8,8 @@
     "src"
   ],
   "scripts": {
-    "test": "vitest run",
     "build": "tsc",
-    "prepublish": "rm -rf ./dist && pnpm test && pnpm build"
+    "prepublish": "rm -rf ./dist && pnpm build"
   },
   "keywords": [],
   "license": "MIT",

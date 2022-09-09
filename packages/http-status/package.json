@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepublish": "rm -rf ./dist && pnpm test && pnpm build"
+    "prepublish": "rm -rf ./dist && pnpm build"
   },
   "publishConfig": {
     "main": "dist/index.js",

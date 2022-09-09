@@ -1,6 +1,6 @@
 import { it, expect } from "vitest";
 
-import { generateMediaQueries } from "./generate_media_queries";
+import { generateMediaQueries } from "./index";
 
 it("outputs custom media queries object built for mobile first designs", () => {
   expect(generateMediaQueries({
