@@ -54,8 +54,8 @@ jobs:
           git config --global user.name "Jason Raimondi"
           git commit -am 'docs: update readme with latest info
           
-          [ci skip]'
-          git push
+          [ci skip]' || true
+          git push || true
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
