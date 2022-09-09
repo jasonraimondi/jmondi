@@ -33,7 +33,7 @@ jobs:
       - run: pnpm test -- --coverage
 
   update-readme:
-    if: github.event_name == 'push' && (github.ref_name == 'master')
+    if: github.event_name == 'push' && (github.ref_name == 'main')
     needs: [ test ]
     runs-on: ubuntu-latest
     steps:
@@ -60,7 +60,7 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
   publish:
-    if: github.event_name == 'push' && (github.ref_name == 'master' || github.ref_name == 'next')
+    if: github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'next')
     needs: [ test ]
     runs-on: ubuntu-latest
     steps:
@@ -75,7 +75,7 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
           registry-url: 'https://registry.npmjs.org'
       - run: pnpm i --frozen-lockfile --production false
-      - if: github.ref_name == 'master'
+      - if: github.ref_name == 'main'
         run: pnpm publish --recursive --filter="@jmondi/*" --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
