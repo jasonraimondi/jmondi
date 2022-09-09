@@ -1,0 +1,7 @@
+{
+  "name": "@jmondi/package-grabber",
+  "version": "0.0.1",
+  "author": "Jason Raimondi <jason@raimondi.us>",
+  "description": "[placeholder] wll eventually be [update-readme.mjs](./bin/update-readme.mjs)",
+  "license": "MIT"
+}
