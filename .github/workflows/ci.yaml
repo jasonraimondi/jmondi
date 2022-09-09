@@ -1,9 +1,9 @@
-name: Unit Tests
+name: Continuous Integration
 
 on: [push, pull_request]
 
 env:
-  PNPM_VERSION: "7.9.1"
+  PNPM_VERSION: "7"
   NODE_VERSION: "16.x"
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2.2.2
         with:
           version: ${{ env.PNPM_VERSION }}
       - uses: actions/setup-node@v2
@@ -32,13 +32,40 @@ jobs:
       - run: pnpm i --frozen-lockfile --production false
       - run: pnpm test -- --coverage
 
+  update-readme:
+    if: github.event_name == 'push' && (github.ref_name == 'master')
+    needs: [ test ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+          registry-url: 'https://registry.npmjs.org'
+      - run: pnpm i --frozen-lockfile --production false
+      - run: node bin/update-readme.mjs
+      - run: |
+          git config --global user.email "robot@raimondi.us"
+          git config --global user.name "Jason Raimondi"
+          git commit -am 'docs: update readme with latest info
+          
+          [ci skip]'
+          git push
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
   publish:
     if: github.event_name == 'push' && (github.ref_name == 'master' || github.ref_name == 'next')
     needs: [ test ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2.2.2
         with:
           version: ${{ env.PNPM_VERSION }}
       - uses: actions/setup-node@v2
