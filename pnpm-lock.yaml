@@ -71,6 +71,14 @@ importers:
 
   packages/http-err:
     specifiers:
+      '@jmondi/http-status': workspace:*
+      '@jmondi/tsconfig': workspace:*
+    devDependencies:
+      '@jmondi/http-status': link:../http-status
+      '@jmondi/tsconfig': link:../tsconfig
+
+  packages/http-status:
+    specifiers:
       '@jmondi/tsconfig': workspace:*
     devDependencies:
       '@jmondi/tsconfig': link:../tsconfig
