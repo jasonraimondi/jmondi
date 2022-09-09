@@ -14,7 +14,7 @@
   },
   "keywords": [],
   "license": "MIT",
-  "description": "",
+  "description": "Util functions for local and session storage that handles namespacing as well as json serializing and parsing values.",
   "dependencies": {
     "js-cookie": "^3.0.1"
   },

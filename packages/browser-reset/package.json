@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "license": "MIT",
-  "description": "",
+  "description": "An opinionated browser reset.",
   "devDependencies": {
     "@jmondi/mobile-first": "workspace:^1.0.2",
     "autoprefixer": "^10.4.8",

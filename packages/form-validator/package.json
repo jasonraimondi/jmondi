@@ -1,5 +1,6 @@
 {
   "name": "@jmondi/form-validator",
+  "description": "Form validation helper functions for joi.",
   "version": "1.0.2",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "main": "dist/form-validator.js",
@@ -14,7 +15,6 @@
   },
   "keywords": [],
   "license": "MIT",
-  "description": "",
   "devDependencies": {
     "joi": "^17.6.0",
     "yup": "^0.32.11"
