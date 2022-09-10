@@ -13,51 +13,80 @@ Some reusable utility packages
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/browser-reset?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/browser-reset)
 
 An opinionated browser reset.
----### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/browser-storage/package.json) @jmondi/browser-storage
+
+---
+
+### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/browser-storage/package.json) @jmondi/browser-storage
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/browser-storage?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/browser-storage)
 
 Util functions for local and session storage that handles namespacing as well as json serializing and parsing values.
----### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/custom-media-mobile-first/package.json) @jmondi/mobile-first
+
+---
+
+### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/custom-media-mobile-first/package.json) @jmondi/mobile-first
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/mobile-first?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/mobile-first)
 
 Helper for adding custom media queries to PostCSS.
----### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/electron-window/package.json) @jmondi/electron-window
+
+---
+
+### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/electron-window/package.json) @jmondi/electron-window
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/electron-window?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/electron-window)
 
 Wrapper function for electron's BrowserWindow.
----### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/form-validator/package.json) @jmondi/form-validator
+
+---
+
+### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/form-validator/package.json) @jmondi/form-validator
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/form-validator?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/form-validator)
 
 Form validation helper functions for joi.
----### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/http-err/package.json) @jmondi/http-err
+
+---
+
+### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/http-err/package.json) @jmondi/http-err
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/http-err?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/http-err)
 
 HttpErrors with status codes and context
----### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/http-status/package.json) @jmondi/http-status
+
+---
+
+### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/http-status/package.json) @jmondi/http-status
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/http-status?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/http-status)
 
 Http status codes
----### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/package-grabber/package.json) @jmondi/package-grabber
+
+---
+
+### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/package-grabber/package.json) @jmondi/package-grabber
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/package-grabber?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/package-grabber)
 
 [placeholder] wll eventually be [update-readme.mjs](./bin/update-readme.mjs)
----### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/route-strings/package.json) @jmondi/route-strings
+
+---
+
+### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/route-strings/package.json) @jmondi/route-strings
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/route-strings?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/route-strings)
 
 Manage and create typed route strings for your applications.
----### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/tsconfig/package.json) @jmondi/tsconfig
+
+---
+
+### [📁](https://github.com/jasonraimondi/jmondi/tree/main/packages/tsconfig/package.json) @jmondi/tsconfig
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/tsconfig?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/tsconfig)
 
 Default tsconfig.json
+
+---
 
 
 [//]: # (INSERT_END)
