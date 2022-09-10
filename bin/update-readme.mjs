@@ -37,7 +37,8 @@ void async function () {
 
 [![NPM Downloads](https://img.shields.io/npm/dt/${p.name}?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/${p.name})
 
-${p.description}`).join('\n');
+${p.description}
+`).join('---');
 
   const regex = /INSERT_START([\s\S]*?)INSERT_END/;
   const result = readme.replace(regex, `INSERT_START)
