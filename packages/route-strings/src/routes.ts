@@ -1,16 +1,27 @@
-export class Route<Params extends Record<string, string|number>> {
-  constructor(public readonly template: string) {}
 
-  create(params?: Params) {
-    let result = this.template;
+// https://type-level-typescript.com/
+type ParseUrlParams<url> =
+  url extends `${infer path}(${infer optionalPath})`
+    ? ParseUrlParams<path> & Partial<ParseUrlParams<optionalPath>>
+    : url extends `${infer start}/${infer rest}`
+      ? ParseUrlParams<start> & ParseUrlParams<rest>
+      : url extends `:${infer param}`
+        ? { [k in param]: string | number }
+        : {};
 
-    if (!params) return result;
+export class Route<T extends string> {
+  constructor(public readonly template: T) {
+  }
 
-    for (let [key, value] of Object.entries(params)) {
-      result = result.replace(`:${key}`, `${value}`);
-    }
+  create(params: ParseUrlParams<T> = {}) {
+    let url = Object.entries<string>(params).reduce<string>(
+      (path, [key, value]) => path.replace(`:${key}`, value),
+      this.template,
+    );
 
-    return result;
+    url = url.replace(/(\(|\)|\/?:[^\/]+)/g, "");
+
+    return url;
   }
 }
 

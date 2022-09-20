@@ -20,8 +20,8 @@ import { Route } from "@jmondi/route-strings";
 const ROUTES = {
   users: {
     list: new Route("/users"),
-    show: new Route<{ id: number }>("/users/:id"),
-    deeplink: new Route<{ id: number; something: string; here: number }>("/users/:id/:something/:here"),
+    show: new Route("/users/:id"),
+    deeplink: new Route("/users/:id/:something/:here"),
   }
 }
 
@@ -35,4 +35,11 @@ console.log(ROUTES.users.show.create({ id: 1 }));
 // /users/1
 console.log(ROUTES.users.deeplink.create({ id: 1, something: "magic", here: 2 }));
 // /users/1/magic/2
+```
+
+Invalid params passed to create will throw error.
+
+```typescript
+console.log(ROUTES.users.show.create({ wrong: "this field doesnt exist" }));
+// error missing id
 ```
