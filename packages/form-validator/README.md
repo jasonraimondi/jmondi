@@ -20,33 +20,38 @@ const form = z.object({
   password: z.string().min(8),
   rememberMe: z.boolean(),
 });
+```
 
-let data = {};
-let errors = validateForm({ schema, data });
+```typescript
+const data = {};
+const errors = validateForm({ schema, data });
 expect(errors).toStrictEqual({
   age: "Number must be less than or equal to 150",
   email: "Invalid email",
   password: "Required",
   rememberMe: "Required",
 });
+```
 
-
-data = {
+```typescript
+const data = {
   age: 99,
   email: "bob@example.com",
   password: "bobobobobobob",
   rememberMe: true,
 };
-errors = validateForm({ schema, data });
+const errors = validateForm({ schema, data });
 expect(errors).toBeUndefined();
+```
 
-data = {
+```typescript
+const data = {
   age: 99,
   email: "bob",
   password: "bobobobobobob",
   rememberMe: true,
 };
-errors = validateForm({ schema, data });
+const errors = validateForm({ schema, data });
 expect(errors).toStrictEqual({
   email: "Invalid Email Address",
 })
