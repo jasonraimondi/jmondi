@@ -44,7 +44,7 @@ Wrapper function for electron's BrowserWindow.
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/form-validator?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/form-validator)
 
-Form validation helper functions for joi.
+Form validation helper functions for zod.
 
 ---
 
