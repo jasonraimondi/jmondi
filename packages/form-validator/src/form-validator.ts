@@ -1,24 +1,34 @@
-import joi, { ObjectSchema, SchemaMap, ValidationError } from "joi";
+// import joi, { ObjectSchema, SchemaMap, ValidationError } from "joi";
 
-type FormData = { schema: ObjectSchema; data: any; };
+import { z, ZodError } from "zod";
 
-const defaultValues = {
-  "string.base": `Should be a type of 'text'`,
-  "string.email": `Invalid Email Address`,
-  "string.min": `Should have a minimum length of {#limit}`,
-  "any.required": `This field is required`,
-};
+type FormData = { schema: z.Schema; data: any };
 
-export function createForm<TSchema = any, isStrict = false, T = TSchema>(schema?: SchemaMap<T, isStrict>) {
-  return joi.object(schema).messages(defaultValues);
+/**
+ * @deprecated use z.object directly
+ * @param schema
+ */
+export function createForm<T extends z.ZodRawShape>(schema: T) {
+  return z.object(schema);
 }
 
-export async function validateForm({ schema, data }: FormData): Promise<undefined|Record<string, string>> {
+export type Errors = Record<string, string>;
+export type ValidationResponse = undefined | Errors;
+
+export async function validateForm(formData: FormData,): Promise<ValidationResponse> {
+  const { schema, data } = formData;
+
   try {
-    await schema.validateAsync(data, { abortEarly: false });
+    await schema.parseAsync(data);
   } catch (err) {
-    if (err instanceof ValidationError) {
-      return err.details.reduce((acc, err) => ({ ...acc, ...(err.context?.key ? { [err.context.key]: err.message } : {}) }), {});
+    if (err instanceof ZodError) {
+      return err.errors.reduce((prev, next) => {
+        const [key] = next.path;
+        return {
+          ...prev,
+          [key]: next.message,
+        };
+      }, {});
     }
   }
   return;

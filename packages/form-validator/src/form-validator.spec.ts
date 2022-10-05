@@ -1,38 +1,66 @@
 import { it, expect } from "vitest";
-
-import joi from "joi";
+import { z } from "zod";
 
 import { createForm, validateForm } from "./form-validator";
 
-const form = createForm({
-  age: joi.number().required(),
-  email: joi.string().email({ tlds: false }).required(),
-  password: joi.string().min(8).required(),
-  rememberMe: joi.boolean().required(),
+const schema = z.object({
+  age: z.number().positive().max(150),
+  email: z.string().email(),
+  password: z.string().min(8),
+  rememberMe: z.boolean(),
 });
 
-it("validateForm function returns undefined if no errors", async () => {
+it("returns undefined if no errors", async () => {
   const data = {
-    age: 1,
+    age: 99,
     email: "bob@example.com",
     password: "bobobobobbobo",
     rememberMe: true,
   };
 
-  const errors = await validateForm({ schema: form, data });
+  const errors = await validateForm({ schema, data });
 
   expect(errors).toBeUndefined();
 });
 
-it("validateForm function returns a list of errors for invalid data", async () => {
-  const data = {};
+it("returns a dict of errors", async () => {
+  const data = { age: 199, email: "jason", };
 
-  const errors = await validateForm({ schema: form, data });
+  const errors = await validateForm({ schema, data });
 
   expect(errors).toStrictEqual({
-    age: "This field is required",
-    email: "This field is required",
-    password: "This field is required",
-    rememberMe: "This field is required",
+    age: "Number must be less than or equal to 150",
+    email: "Invalid email",
+    password: "Required",
+    rememberMe: "Required",
   });
+});
+
+it("ignores optional fields", async () => {
+  const data = {};
+  const schema = z.object({ nickname: z.optional(z.number()) });
+
+  const errors = await validateForm({ schema, data });
+
+  expect(errors).toBeUndefined();
+});
+
+it("can use custom messages", async () => {
+  const data = {};
+  const schema = z.object({
+    quote: z.string({ required_error: "Quote is required" }),
+  });
+
+  const errors = await validateForm({ schema, data });
+
+  expect(errors).toStrictEqual({ quote: "Quote is required" });
+});
+
+it("createForm function still works", async () => {
+  const schema = createForm({});
+  const data = {};
+
+  const errors = await validateForm({ schema, data });
+
+  expect(errors).toBeUndefined();
 });
