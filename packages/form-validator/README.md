@@ -57,13 +57,48 @@ expect(errors).toStrictEqual({
 })
 ```
 
+#### Deep Objects
+
+```typescript
+const data = {
+  user: {
+    email: "bob",
+  }
+};
+const errors = validateForm({ schema, data });
+expect(errors).toStrictEqual({
+  user: {
+    email: "Invalid Email Address",
+  }
+})
+```
+
+```typescript
+const schema = z.object({
+  user: z.object({
+    email: z.string().email()
+  })
+})
+const data = {
+  user: {
+    email: "bob",
+  }
+};
+const options = { flatResult: true };
+const errors = validateForm({ schema, data }, options);
+expect(errors).toStrictEqual({
+  "user.email": "Invalid Email Address",
+})
+```
+
 #### Svelte Example
 
 ```html
+
 <script lang="ts">
   import { z } from "zod";
   import { validateForm, ValidationResponse } from "@jmondi/form-validator";
-  
+
   import { handleLogin } from "$lib/my-login-function";
 
   let errors: ValidationResponse;
