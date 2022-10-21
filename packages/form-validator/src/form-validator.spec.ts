@@ -24,7 +24,7 @@ it("returns undefined if no errors", async () => {
 });
 
 it("returns a dict of errors", async () => {
-  const data = { age: 199, email: "jason", };
+  const data = { age: 199, email: "jason" };
 
   const errors = await validateForm({ schema, data });
 
@@ -63,4 +63,45 @@ it("createForm function still works", async () => {
   const errors = await validateForm({ schema, data });
 
   expect(errors).toBeUndefined();
+});
+
+it("supports objects", async () => {
+  const innerSchema = z.object({
+    user: schema,
+  });
+  const data = {
+    user: {
+      age: 99,
+      password: "bobloblaw",
+      rememberMe: true,
+    },
+  };
+
+  const errors = await validateForm({ schema: innerSchema, data });
+
+  expect(errors).toStrictEqual({
+    user: {
+      email: "Required",
+    },
+  });
+});
+
+it("supports objects with flatResult", async () => {
+  const innerSchema = z.object({
+    user: schema,
+  });
+  const data = {
+    user: {
+      age: 99,
+      email: "jason",
+    },
+  };
+
+  const errors = await validateForm({ schema: innerSchema, data }, { flatResult: true });
+
+  expect(errors).toStrictEqual({
+    "user.email": "Invalid email",
+    "user.password": "Required",
+    "user.rememberMe": "Required",
+  });
 });
