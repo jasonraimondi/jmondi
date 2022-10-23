@@ -1,7 +1,7 @@
 import { it, expect } from "vitest";
 import { z } from "zod";
 
-import { createForm, validateForm } from "./form-validator";
+import { validateForm } from "./form-validator";
 
 const schema = z.object({
   age: z.number().positive().max(150),
@@ -54,15 +54,6 @@ it("can use custom messages", async () => {
   const errors = await validateForm({ schema, data });
 
   expect(errors).toStrictEqual({ quote: "Quote is required" });
-});
-
-it("createForm function still works", async () => {
-  const schema = createForm({});
-  const data = {};
-
-  const errors = await validateForm({ schema, data });
-
-  expect(errors).toBeUndefined();
 });
 
 it("supports objects", async () => {
