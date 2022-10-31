@@ -103,7 +103,6 @@ expect(errors).toStrictEqual({
 
   let errors: ValidationResponse;
 
-  // technically the z.object function is... useless. You can just use z.object
   export const loginSchema = z.object({
     email: z.string().email(),
     password: z.string().min(8),
