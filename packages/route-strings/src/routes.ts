@@ -20,26 +20,10 @@ export type RouteGroupConfig = {
 }
 
 export class RouteGroup {
-  private readonly routes = new Map<string, Route<any>>()
-
   constructor(private readonly config: RouteGroupConfig) {}
 
-  set<T extends string>(route: T) {
-    const final = new Route(route, this.config.prefix);
-    this.routes.set(route, final);
-    return final;
-  }
-
-  delete(key: string) {
-    this.routes.delete(key);
-  }
-
-  get(key: string) {
-    return this.routes.get(key);
-  }
-
-  entries() {
-    return this.routes.entries();
+  add<T extends string>(route: T) {
+    return new Route(route, this.config.prefix);
   }
 }
 

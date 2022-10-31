@@ -1,6 +1,6 @@
 {
   "name": "@jmondi/route-strings",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "author": "Jason Raimondi <jason@raimondi.us>",
   "description": "Manage and create typed route strings for your applications.",
   "license": "MIT",

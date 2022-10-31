@@ -47,8 +47,8 @@ describe("with router", () => {
   });
 
   it("supports global prefix", () => {
-    expect(router.set("/user/:id").create({ id: 1 })).toBe("https://example.com/user/1");
-    expect(router.set("/user/:user/comments/:comment").create({ user: 1, comment: "something" })).toBe("https://example.com/user/1/comments/something");
+    expect(router.add("/user/:id").create({ id: 1 })).toBe("https://example.com/user/1");
+    expect(router.add("/user/:user/comments/:comment").create({ user: 1, comment: "something" })).toBe("https://example.com/user/1/comments/something");
   });
 })
 
