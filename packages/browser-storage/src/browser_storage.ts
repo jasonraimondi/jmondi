@@ -54,7 +54,7 @@ export class CookieStorage {
     cookies.remove(this.storagePrefix + key, options);
   }
 
-  set(key: string, value: string, options?: CookieAttributes): void {
+  set(key: string, value: unknown, options?: CookieAttributes): void {
     cookies.set(this.storagePrefix + key, toStore(value), options);
   }
 }
