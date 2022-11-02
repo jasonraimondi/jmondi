@@ -17,6 +17,11 @@ describe("without global prefix", () => {
     expect(new Route("/user/:id/comments").template).toBe("/user/:id/comments");
   });
 
+  it("returns template when cast to a string", () => {
+    expect(new Route("/user/:id").toString()).toBe("/user/:id");
+    expect(String(new Route("/user/:id"))).toBe("/user/:id");
+  });
+
   it("creates templates from input params", () => {
     expect(route("/user").create()).toBe("/user");
     expect(new Route("/user/:id").create({ id: 1 })).toBe("/user/1");
@@ -49,6 +54,11 @@ describe("with router", () => {
   it("supports global prefix", () => {
     expect(router.add("/user/:id").create({ id: 1 })).toBe("https://example.com/user/1");
     expect(router.add("/user/:user/comments/:comment").create({ user: 1, comment: "something" })).toBe("https://example.com/user/1/comments/something");
+  });
+
+  it("returns template when cast to a string", () => {
+    expect(router.add("/user/:id").toString()).toBe("/user/:id");
+    expect(String(router.add("/user/:id"))).toBe("/user/:id");
   });
 })
 

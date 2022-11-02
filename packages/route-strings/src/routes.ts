@@ -31,6 +31,10 @@ export class Route<T extends string> {
   constructor(public readonly template: T, public readonly prefix?: string) {
   }
 
+  toString(): string {
+    return this.template;
+  }
+
   create(params?: ParseUrlParams<T>) {
     if (!params) return this.template;
 
