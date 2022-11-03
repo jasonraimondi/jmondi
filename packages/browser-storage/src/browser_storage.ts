@@ -1,4 +1,5 @@
 import cookies, { CookieAttributes } from "js-cookie";
+import superJason from "superjson";
 
 export abstract class AbstractStorage {
   abstract readonly adapter: Storage;
@@ -59,20 +60,26 @@ export class CookieStorage {
   }
 }
 
-function toStore(value: unknown): string {
-  if (value === undefined) value = null;
-  return JSON.stringify(value);
+export function toStore(value: unknown): string {
+  switch (typeof value) {
+    case "string":
+      return value;
+    case "undefined":
+      return superJason.stringify(null);
+    default:
+      return superJason.stringify(value)
+  }
 }
 
-function fromStore<T>(item: unknown): T | null {
-  if (typeof item !== "string" || item === "null") {
-    return null;
-  }
+export function fromStore<T = unknown>(item: unknown): T | null {
+  if (item === "null") return null;
+
+  if (typeof item !== "string") return null;
 
   try {
-    return JSON.parse(item);
+    return superJason.parse(item);
   } catch (e) {
   }
 
-  return null;
+  return item as T ?? null;
 }

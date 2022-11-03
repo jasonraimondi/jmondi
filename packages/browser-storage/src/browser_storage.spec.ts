@@ -1,6 +1,6 @@
 import { describe, beforeEach, it, expect } from "vitest";
 
-import { AbstractStorage } from "./browser_storage";
+import { AbstractStorage, fromStore, toStore } from "./browser_storage";
 
 class MockStorageProvider implements Storage {
   private storage = new Map<string, string | null>();
@@ -76,7 +76,7 @@ describe("abstract storage spec", () => {
 
     expect(mockStorage.getItem("1")).toBe("the wrong value");
     expect(testStorage.get("1")).toBe("the correct value");
-    expect(mockStorage.getItem("@testing:1")).toBe(JSON.stringify("the correct value"));
+    expect(mockStorage.getItem("@testing:1")).toBe("the correct value");
   });
 
   it("catches error", () => {
@@ -93,3 +93,4 @@ describe("abstract storage spec", () => {
     expect(testStorage.get("1")).toBeNull();
   });
 });
+
