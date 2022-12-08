@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
 
-import { route, Route, RouteGroup, setRouteGlobalPrefix } from "./routes";
+import { route, Route, RouteGroup, setRouteGlobalPrefix } from "./routes.js";
 
 describe("without global prefix", () => {
   it("supports camel case template ids", () => {
