@@ -4,7 +4,7 @@
 
 Some reusable utility packages
 
-[//]: # "INSERT_START"
+[//]: # "INSERT_START)
 
 ## @jmondi/browser-storage
 
@@ -74,6 +74,7 @@ console.log(cookieStorage.get("user1"));
 console.log(cookieStorage.get("user2"));
 // { email: "hermoine@hogwarts.com", name: "Hermoine" }
 ```
+
 
 ---
 
@@ -200,6 +201,7 @@ Will output
 }
 ```
 
+
 ---
 
 ## @jmondi/electron-window
@@ -255,6 +257,7 @@ async function bootstrap() {
 
 bootstrap().catch(console.log);
 ```
+
 
 ---
 
@@ -426,6 +429,7 @@ expect(errors).toStrictEqual({
 </div>
 ```
 
+
 ---
 
 ## @jmondi/http-err
@@ -474,6 +478,7 @@ app.get("/api", apiRoutes);
 app.use(handleErrors);
 ```
 
+
 ---
 
 ## @jmondi/http-status
@@ -498,6 +503,7 @@ app.get("/api", (req, res) => {
 });
 ...
 ```
+
 
 ---
 
@@ -547,6 +553,7 @@ console.log(ROUTES.users.show.create({ wrong: "this field doesnt exist" }));
 // error missing id
 ```
 
+
 ---
 
 ## @jmondi/tsconfig
@@ -570,9 +577,11 @@ pnpm add @jmondi/tsconfig
 }
 ```
 
+
 ---
 
-[//]: # "INSERT_END"
+
+[//]: # (INSERT_END"
 
 ## My External Packages
 
