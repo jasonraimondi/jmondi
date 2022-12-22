@@ -7,6 +7,7 @@ importers:
       '@types/node': ^18.7.16
       '@vitest/coverage-c8': ^0.23.1
       globby: ^13.1.2
+      prettier: ^2.8.1
       typescript: ^4.8.3
       vite: ^3.1.0
       vitest: ^0.23.1
@@ -14,6 +15,7 @@ importers:
       '@types/node': 18.7.16
       '@vitest/coverage-c8': 0.23.1
       globby: 13.1.2
+      prettier: 2.8.1
       typescript: 4.8.3
       vite: 3.1.0
       vitest: 0.23.1
@@ -2077,6 +2079,12 @@ packages:
   /prepend-http/2.0.0:
     resolution: {integrity: sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=}
     engines: {node: '>=4'}
+    dev: true
+
+  /prettier/2.8.1:
+    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /pretty-hrtime/1.0.3:
