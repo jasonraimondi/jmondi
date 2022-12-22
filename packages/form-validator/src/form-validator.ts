@@ -1,17 +1,29 @@
 import { z } from "zod";
 
-type FormData = { schema: z.Schema; data: any };
+type Options = { flatResult?: boolean };
 
-export type Errors = Record<string, any>;
-export type ValidationResponse = undefined | Errors;
+type FormDataRecord = Record<string, any>;
+type Params = { schema: z.Schema; data: FormDataRecord | FormData };
 
-export async function validateForm(
-  formData: FormData,
-  options?: { flatResult?: boolean },
-): Promise<ValidationResponse> {
-  const { schema, data } = formData;
+export type FormErrors = Record<string, any>;
+export type ValidationResponse = undefined | FormErrors;
 
-  const result = await schema.safeParseAsync(data);
+function getFormData(formData: FormDataRecord | FormData) {
+  if (formData instanceof FormData) {
+    const result: FormDataRecord = {};
+    for (const [key, value] of formData.entries()) {
+      result[key] = value;
+    }
+    return result;
+  }
+
+  return formData;
+}
+
+export function validateForm(params: Params, options: Options = {}): ValidationResponse {
+  const formData = getFormData(params.data);
+
+  const result = params.schema.safeParse(formData);
 
   if (result.success) return;
 
