@@ -2,32 +2,34 @@ import { z } from "zod";
 
 type Options = { flatResult?: boolean };
 
-type FormDataRecord = Record<string, any>;
-type Params = { schema: z.Schema; data: FormDataRecord | FormData };
+type FormDataRecord<T> = Record<string, T>;
+type Params<T = z.Schema> = { schema: T; data: FormDataRecord<T | unknown> | FormData };
 
-export type FormErrors = Record<string, any>;
-export type ValidationResponse = undefined | FormErrors;
+// @todo if someone knows how to type this better... please.
+export type FormErrors = Record<string, string | Record<string, string | Record<string, string>>>;
+export type ValidationResponse<T> = [FormDataRecord<T>, undefined] | [undefined, FormErrors];
 
-function getFormData(formData: FormDataRecord | FormData) {
+export function parseForm<T extends z.Schema>(
+  params: Params<T>,
+  options: Options = {},
+): ValidationResponse<T> {
+  let formData = params.data;
+
   if (formData instanceof FormData) {
-    const result: FormDataRecord = {};
+    const result: FormDataRecord<any> = {};
     for (const [key, value] of formData.entries()) {
       result[key] = value;
     }
-    return result;
+    formData = result;
   }
-
-  return formData;
-}
-
-export function validateForm(params: Params, options: Options = {}): ValidationResponse {
-  const formData = getFormData(params.data);
 
   const result = params.schema.safeParse(formData);
 
-  if (result.success) return;
+  if (result.success) {
+    return [result.data, undefined];
+  }
 
-  return result.error.errors.reduce<ValidationResponse>((prev, next) => {
+  const errors = result.error.errors.reduce<FormErrors>((prev, next) => {
     let result = { ...prev };
 
     if (options?.flatResult) {
@@ -44,4 +46,6 @@ export function validateForm(params: Params, options: Options = {}): ValidationR
 
     return result;
   }, {});
+
+  return [undefined, errors];
 }

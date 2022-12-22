@@ -1,7 +1,7 @@
 import { it, describe, expect } from "vitest";
 import { z } from "zod";
 
-import { validateForm } from "./form-validator.js";
+import { parseForm } from "./form-validator.js";
 
 describe("with POJO data input", () => {
   const schema = z.object({
@@ -19,7 +19,7 @@ describe("with POJO data input", () => {
       rememberMe: true,
     };
 
-    const errors = await validateForm({ schema, data });
+    const [, errors] = parseForm({ schema, data });
 
     expect(errors).toBeUndefined();
   });
@@ -27,7 +27,7 @@ describe("with POJO data input", () => {
   it("returns a dict of errors", async () => {
     const data = { age: 199, email: "jason" };
 
-    const errors = await validateForm({ schema, data });
+    const [, errors] = parseForm({ schema, data });
 
     expect(errors).toStrictEqual({
       age: "Number must be less than or equal to 150",
@@ -41,7 +41,7 @@ describe("with POJO data input", () => {
     const data = {};
     const schema = z.object({ nickname: z.number().optional() });
 
-    const errors = await validateForm({ schema, data });
+    const [, errors] = parseForm({ schema, data });
 
     expect(errors).toBeUndefined();
   });
@@ -52,12 +52,18 @@ describe("with POJO data input", () => {
       quote: z.string({ required_error: "Quote is required" }),
     });
 
-    const errors = await validateForm({ schema, data });
+    const [, errors] = parseForm({ schema, data });
 
     expect(errors).toStrictEqual({ quote: "Quote is required" });
   });
 
   it("supports objects", async () => {
+    const schema = z.object({
+      age: z.number().positive().max(150),
+      email: z.string().email(),
+      password: z.string().min(8),
+      rememberMe: z.boolean(),
+    });
     const innerSchema = z.object({
       user: schema,
     });
@@ -69,7 +75,7 @@ describe("with POJO data input", () => {
       },
     };
 
-    const errors = await validateForm({ schema: innerSchema, data });
+    const [, errors] = parseForm({ schema: innerSchema, data });
 
     expect(errors).toStrictEqual({
       user: {
@@ -89,7 +95,7 @@ describe("with POJO data input", () => {
       },
     };
 
-    const errors = await validateForm({ schema: innerSchema, data }, { flatResult: true });
+    const [, errors] = parseForm({ schema: innerSchema, data }, { flatResult: true });
 
     expect(errors).toStrictEqual({
       "user.email": "Invalid email",
@@ -114,9 +120,15 @@ describe("with FormData data input", () => {
     data.append("password", "bobobobobbobo");
     data.append("rememberMe", "true");
 
-    const errors = await validateForm({ schema, data });
+    const [formData, errors] = parseForm({ schema, data });
 
     expect(errors).toBeUndefined();
+    expect(formData).toStrictEqual({
+      age: 99,
+      email: "bob@example.com",
+      password: "bobobobobbobo",
+      rememberMe: true,
+    });
   });
 
   it("returns a dict of errors", async () => {
@@ -130,7 +142,7 @@ describe("with FormData data input", () => {
     data.append("age", "199");
     data.append("email", "jason");
 
-    const errors = await validateForm({ schema, data });
+    const [, errors] = parseForm({ schema, data });
 
     expect(errors).toStrictEqual({
       age: "Number must be less than or equal to 150",
@@ -145,7 +157,7 @@ describe("with FormData data input", () => {
     const data = new FormData();
     const schema = z.object({ nickname: z.number().optional() });
 
-    const errors = await validateForm({ schema, data });
+    const [, errors] = parseForm({ schema, data });
 
     expect(errors).toBeUndefined();
   });
@@ -156,7 +168,7 @@ describe("with FormData data input", () => {
       quote: z.string({ required_error: "Quote is required" }),
     });
 
-    const errors = await validateForm({ schema, data });
+    const [, errors] = parseForm({ schema, data });
 
     expect(errors).toStrictEqual({ quote: "Quote is required" });
   });
