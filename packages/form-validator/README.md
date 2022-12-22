@@ -12,9 +12,9 @@ pnpm add @jmondi/form-validator zod
 
 ```typescript
 import { z } from "zod";
-import { validateForm } from "@jmondi/form-validator";
+import { parseForm } from "@jmondi/form-validator";
 
-const form = z.object({
+const RegisterSchema = z.object({
   age: z.number().positive().max(150),
   email: z.string().email(),
   password: z.string().min(8),
@@ -24,7 +24,7 @@ const form = z.object({
 
 ```typescript
 const data = {};
-const errors = validateForm({ schema, data });
+const { errors } = parseForm({ schema: RegisterSchema, data });
 expect(errors).toStrictEqual({
   age: "Number must be less than or equal to 150",
   email: "Invalid email",
@@ -40,7 +40,7 @@ const data = {
   password: "bobobobobobob",
   rememberMe: true,
 };
-const errors = validateForm({ schema, data });
+const { errors } = parseForm({ schema: RegisterSchema, data });
 expect(errors).toBeUndefined();
 ```
 
@@ -51,7 +51,7 @@ const data = {
   password: "bobobobobobob",
   rememberMe: true,
 };
-const errors = validateForm({ schema, data });
+const { errors } = parseForm({ schema: RegisterSchema, data });
 expect(errors).toStrictEqual({
   email: "Invalid Email Address",
 });
@@ -65,7 +65,7 @@ const data = {
     email: "bob",
   },
 };
-const errors = validateForm({ schema, data });
+const { errors } = parseForm({ schema: RegisterSchema, data });
 expect(errors).toStrictEqual({
   user: {
     email: "Invalid Email Address",
@@ -85,7 +85,7 @@ const data = {
   },
 };
 const options = { flatResult: true };
-const errors = validateForm({ schema, data }, options);
+const { errors } = parseForm({ schema: RegisterSchema, data }, options);
 expect(errors).toStrictEqual({
   "user.email": "Invalid Email Address",
 });
@@ -96,13 +96,13 @@ expect(errors).toStrictEqual({
 ```html
 <script lang="ts">
   import { z } from "zod";
-  import { validateForm, ValidationResponse } from "@jmondi/form-validator";
+  import { parseForm, ValidationResponse } from "@jmondi/form-validator";
 
   import { handleLogin } from "$lib/my-login-function";
 
   let errors: ValidationResponse;
 
-  export const loginSchema = z.object({
+  export const LoginSchema = z.object({
     email: z.string().email(),
     password: z.string().min(8),
     rememberMe: z.boolean(),
@@ -115,8 +115,11 @@ expect(errors).toStrictEqual({
   };
 
   async function submit() {
-    errors = await validateForm({ schema: loginSchema, data: loginForm });
-    if (!errors) await handleLogin(loginForm);
+    let {
+      data,
+      errors
+    } = await parseForm<typeof LoginSchema>({ schema: LoginSchema, data: loginForm });
+    if (!errors) await handleLogin(data);
   }
 </script>
 
