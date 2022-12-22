@@ -8,12 +8,12 @@ Generates mobile first media queries for the [postcss-custom-media plugin](https
 pnpm add @jmondi/mobile-first
 ```
 
-## Usage 
+## Usage
 
 An object with keys of strings, and values of the breakpoint. With the following input:
 
 ```javascript
-const { generateMediaQueries } = require('@jmondi/mobile-first');
+const { generateMediaQueries } = require("@jmondi/mobile-first");
 
 const result = generateMediaQueries({
   phone: 400,
@@ -38,24 +38,26 @@ Which then you can use:
 ```javascript
 // postcss.config.js
 
-const { generateMediaQueries } = require('@jmondi/mobile-first');
+const { generateMediaQueries } = require("@jmondi/mobile-first");
 
 module.exports = {
-    plugins: {
-        'postcss-custom-media': {
-            importFrom: [{
-                customMedia: {
-                    '--light': '(prefers-color-scheme: light)',
-                    '--dark': '(prefers-color-scheme: dark)',
-                    ...generateMediaQueries({
-                        phone: 400,
-                        tablet: 800,
-                        desktop: 1200,
-                    }),
-                },
-            }],
+  plugins: {
+    "postcss-custom-media": {
+      importFrom: [
+        {
+          customMedia: {
+            "--light": "(prefers-color-scheme: light)",
+            "--dark": "(prefers-color-scheme: dark)",
+            ...generateMediaQueries({
+              phone: 400,
+              tablet: 800,
+              desktop: 1200,
+            }),
+          },
         },
+      ],
     },
+  },
 };
 ```
 
@@ -63,38 +65,58 @@ Then in your css files
 
 ```postcss
 @media (--phone) {
-  html { background-color: teal; }
+  html {
+    background-color: teal;
+  }
 }
 @media (--phone-only) {
-  html { color: white; }
+  html {
+    color: white;
+  }
 }
 @media (--tablet) {
-  html { background-color: tomato; }
+  html {
+    background-color: tomato;
+  }
 }
 @media (--tablet-only) {
-  html { color: black; }
+  html {
+    color: black;
+  }
 }
 @media (--desktop) {
-  html { background-color: purple; }
+  html {
+    background-color: purple;
+  }
 }
 ```
 
-Will output 
+Will output
 
 ```css
 @media (min-width: 400px) {
-  html { background-color: teal; }
+  html {
+    background-color: teal;
+  }
 }
 @media (min-width: 400px) and (max-width: 799px) {
-  html { color: white; }
+  html {
+    color: white;
+  }
 }
 @media (min-width: 800px) {
-  html { background-color: tomato; }
+  html {
+    background-color: tomato;
+  }
 }
 @media (min-width: 800px) and (max-width: 1399px) {
-  html { color: black; }
+  html {
+    color: black;
+  }
 }
 @media (min-width: 1400px) {
-  html { background-color: purple; }
+  html {
+    background-color: purple;
+  }
 }
 ```

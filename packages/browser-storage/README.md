@@ -8,7 +8,7 @@ Supports null and serializable objects.
 npm install @jmondi/browser-storage
 ```
 
-## Usage 
+## Usage
 
 ### Local Storage
 

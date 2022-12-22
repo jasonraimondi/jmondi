@@ -1,10 +1,10 @@
-# @jmondi/*
+# @jmondi/\*
 
 [![CI](https://github.com/jasonraimondi/jmondi/actions/workflows/ci.yaml/badge.svg)](https://github.com/jasonraimondi/jmondi/actions/workflows/ci.yaml)
 
 Some reusable utility packages
 
-[//]: # (INSERT_START)
+[//]: # "INSERT_START"
 
 ## @jmondi/browser-storage
 
@@ -16,7 +16,7 @@ Supports null and serializable objects.
 npm install @jmondi/browser-storage
 ```
 
-### Usage 
+### Usage
 
 #### Local Storage
 
@@ -75,7 +75,6 @@ console.log(cookieStorage.get("user2"));
 // { email: "hermoine@hogwarts.com", name: "Hermoine" }
 ```
 
-
 ---
 
 ## @jmondi/mobile-first
@@ -88,12 +87,12 @@ Generates mobile first media queries for the [postcss-custom-media plugin](https
 pnpm add @jmondi/mobile-first
 ```
 
-### Usage 
+### Usage
 
 An object with keys of strings, and values of the breakpoint. With the following input:
 
 ```javascript
-const { generateMediaQueries } = require('@jmondi/mobile-first');
+const { generateMediaQueries } = require("@jmondi/mobile-first");
 
 const result = generateMediaQueries({
   phone: 400,
@@ -118,24 +117,26 @@ Which then you can use:
 ```javascript
 // postcss.config.js
 
-const { generateMediaQueries } = require('@jmondi/mobile-first');
+const { generateMediaQueries } = require("@jmondi/mobile-first");
 
 module.exports = {
-    plugins: {
-        'postcss-custom-media': {
-            importFrom: [{
-                customMedia: {
-                    '--light': '(prefers-color-scheme: light)',
-                    '--dark': '(prefers-color-scheme: dark)',
-                    ...generateMediaQueries({
-                        phone: 400,
-                        tablet: 800,
-                        desktop: 1200,
-                    }),
-                },
-            }],
+  plugins: {
+    "postcss-custom-media": {
+      importFrom: [
+        {
+          customMedia: {
+            "--light": "(prefers-color-scheme: light)",
+            "--dark": "(prefers-color-scheme: dark)",
+            ...generateMediaQueries({
+              phone: 400,
+              tablet: 800,
+              desktop: 1200,
+            }),
+          },
         },
+      ],
     },
+  },
 };
 ```
 
@@ -143,42 +144,61 @@ Then in your css files
 
 ```postcss
 @media (--phone) {
-  html { background-color: teal; }
+  html {
+    background-color: teal;
+  }
 }
 @media (--phone-only) {
-  html { color: white; }
+  html {
+    color: white;
+  }
 }
 @media (--tablet) {
-  html { background-color: tomato; }
+  html {
+    background-color: tomato;
+  }
 }
 @media (--tablet-only) {
-  html { color: black; }
+  html {
+    color: black;
+  }
 }
 @media (--desktop) {
-  html { background-color: purple; }
+  html {
+    background-color: purple;
+  }
 }
 ```
 
-Will output 
+Will output
 
 ```css
 @media (min-width: 400px) {
-  html { background-color: teal; }
+  html {
+    background-color: teal;
+  }
 }
 @media (min-width: 400px) and (max-width: 799px) {
-  html { color: white; }
+  html {
+    color: white;
+  }
 }
 @media (min-width: 800px) {
-  html { background-color: tomato; }
+  html {
+    background-color: tomato;
+  }
 }
 @media (min-width: 800px) and (max-width: 1399px) {
-  html { color: black; }
+  html {
+    color: black;
+  }
 }
 @media (min-width: 1400px) {
-  html { background-color: purple; }
+  html {
+    background-color: purple;
+  }
 }
 ```
-
 
 ---
 
@@ -235,7 +255,6 @@ async function bootstrap() {
 
 bootstrap().catch(console.log);
 ```
-
 
 ---
 
@@ -295,7 +314,7 @@ const data = {
 const errors = validateForm({ schema, data });
 expect(errors).toStrictEqual({
   email: "Invalid Email Address",
-})
+});
 ```
 
 ##### Deep Objects
@@ -304,38 +323,37 @@ expect(errors).toStrictEqual({
 const data = {
   user: {
     email: "bob",
-  }
+  },
 };
 const errors = validateForm({ schema, data });
 expect(errors).toStrictEqual({
   user: {
     email: "Invalid Email Address",
-  }
-})
+  },
+});
 ```
 
 ```typescript
 const schema = z.object({
   user: z.object({
-    email: z.string().email()
-  })
-})
+    email: z.string().email(),
+  }),
+});
 const data = {
   user: {
     email: "bob",
-  }
+  },
 };
 const options = { flatResult: true };
 const errors = validateForm({ schema, data }, options);
 expect(errors).toStrictEqual({
   "user.email": "Invalid Email Address",
-})
+});
 ```
 
 ##### Svelte Example
 
 ```html
-
 <script lang="ts">
   import { z } from "zod";
   import { validateForm, ValidationResponse } from "@jmondi/form-validator";
@@ -357,7 +375,7 @@ expect(errors).toStrictEqual({
   };
 
   async function submit() {
-    errors = await validateForm({schema: loginSchema, data: loginForm});
+    errors = await validateForm({ schema: loginSchema, data: loginForm });
     if (!errors) await handleLogin(loginForm);
   }
 </script>
@@ -368,15 +386,15 @@ expect(errors).toStrictEqual({
       <label for="email">Email</label>
       {#if errors?.email}<span class="error">{errors.email}</span>{/if}
       <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="johnny.appleseed@example.com"
-          required="required"
-          aria-label="email"
-          aria-required="true"
-          style="margin-bottom: 0;"
-          bind:value="{loginForm.email}"
+        id="email"
+        name="email"
+        type="email"
+        placeholder="johnny.appleseed@example.com"
+        required="required"
+        aria-label="email"
+        aria-required="true"
+        style="margin-bottom: 0;"
+        bind:value="{loginForm.email}"
       />
     </div>
 
@@ -384,21 +402,21 @@ expect(errors).toStrictEqual({
       <label for="password">Password</label>
       {#if errors?.password}<span class="error">{errors.password}</span>{/if}
       <input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="***************"
-          required="required"
-          aria-label="password"
-          aria-required="true"
-          bind:value="{loginForm.password}"
+        id="password"
+        name="password"
+        type="password"
+        placeholder="***************"
+        required="required"
+        aria-label="password"
+        aria-required="true"
+        bind:value="{loginForm.password}"
       />
       <a class="forgot-password" href="/forgot_password">Forgot Password?</a>
     </div>
 
     <div class="form-control inline">
       <label for="rememberMe">Remember Me</label>
-      <input id="rememberMe" type="checkbox" bind:checked="{loginForm.rememberMe}"/>
+      <input id="rememberMe" type="checkbox" bind:checked="{loginForm.rememberMe}" />
     </div>
 
     <div class="form-submit">
@@ -407,7 +425,6 @@ expect(errors).toStrictEqual({
   </form>
 </div>
 ```
-
 
 ---
 
@@ -457,7 +474,6 @@ app.get("/api", apiRoutes);
 app.use(handleErrors);
 ```
 
-
 ---
 
 ## @jmondi/http-status
@@ -483,7 +499,6 @@ app.get("/api", (req, res) => {
 ...
 ```
 
-
 ---
 
 ## @jmondi/route-strings
@@ -500,7 +515,7 @@ npm install @jmondi/route-strings
 yarn add @jmondi/route-strings
 ```
 
-### Usage 
+### Usage
 
 ```typescript
 import { Route } from "@jmondi/route-strings";
@@ -510,8 +525,8 @@ const ROUTES = {
     list: new Route("/users"),
     show: new Route("/users/:id"),
     deeplink: new Route("/users/:id/:something/:here"),
-  }
-}
+  },
+};
 
 console.log(ROUTES.users.list.template);
 // /users
@@ -532,7 +547,6 @@ console.log(ROUTES.users.show.create({ wrong: "this field doesnt exist" }));
 // error missing id
 ```
 
-
 ---
 
 ## @jmondi/tsconfig
@@ -549,18 +563,16 @@ pnpm add @jmondi/tsconfig
 
 ```json5
 {
-  "extends": "@jmondi/tsconfig",
-  "compilerOptions": {
+  extends: "@jmondi/tsconfig",
+  compilerOptions: {
     /* add your own options */
-  }
+  },
 }
 ```
 
-
 ---
 
-
-[//]: # (INSERT_END)
+[//]: # "INSERT_END"
 
 ## My External Packages
 
@@ -568,7 +580,7 @@ pnpm add @jmondi/tsconfig
 
 [![NPM Downloads](https://img.shields.io/npm/dt/@jmondi/oauth2-server?label=npm+downloads&style=flat-square)](https://www.npmjs.com/package/@jmondi/oauth2-server)
 
-A standards compliant implementation of an OAuth 2.0 authorization server for Node that utilizes JWT and Proof Key for Code Exchange (PKCE), written in TypeScript. 
+A standards compliant implementation of an OAuth 2.0 authorization server for Node that utilizes JWT and Proof Key for Code Exchange (PKCE), written in TypeScript.
 
 ### [📁](https://github.com/jasonraimondi/prisma-generator-nestjs-graphql-strict) @jmondi/prisma-generator-nestjs-graphql
 

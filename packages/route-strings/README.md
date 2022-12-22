@@ -12,7 +12,7 @@ npm install @jmondi/route-strings
 yarn add @jmondi/route-strings
 ```
 
-## Usage 
+## Usage
 
 ```typescript
 import { Route } from "@jmondi/route-strings";
@@ -22,8 +22,8 @@ const ROUTES = {
     list: new Route("/users"),
     show: new Route("/users/:id"),
     deeplink: new Route("/users/:id/:something/:here"),
-  }
-}
+  },
+};
 
 console.log(ROUTES.users.list.template);
 // /users

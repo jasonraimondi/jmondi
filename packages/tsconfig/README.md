@@ -12,9 +12,9 @@ pnpm add @jmondi/tsconfig
 
 ```json5
 {
-  "extends": "@jmondi/tsconfig",
-  "compilerOptions": {
+  extends: "@jmondi/tsconfig",
+  compilerOptions: {
     /* add your own options */
-  }
+  },
 }
 ```

@@ -54,7 +54,7 @@ const data = {
 const errors = validateForm({ schema, data });
 expect(errors).toStrictEqual({
   email: "Invalid Email Address",
-})
+});
 ```
 
 #### Deep Objects
@@ -63,38 +63,37 @@ expect(errors).toStrictEqual({
 const data = {
   user: {
     email: "bob",
-  }
+  },
 };
 const errors = validateForm({ schema, data });
 expect(errors).toStrictEqual({
   user: {
     email: "Invalid Email Address",
-  }
-})
+  },
+});
 ```
 
 ```typescript
 const schema = z.object({
   user: z.object({
-    email: z.string().email()
-  })
-})
+    email: z.string().email(),
+  }),
+});
 const data = {
   user: {
     email: "bob",
-  }
+  },
 };
 const options = { flatResult: true };
 const errors = validateForm({ schema, data }, options);
 expect(errors).toStrictEqual({
   "user.email": "Invalid Email Address",
-})
+});
 ```
 
 #### Svelte Example
 
 ```html
-
 <script lang="ts">
   import { z } from "zod";
   import { validateForm, ValidationResponse } from "@jmondi/form-validator";
@@ -116,7 +115,7 @@ expect(errors).toStrictEqual({
   };
 
   async function submit() {
-    errors = await validateForm({schema: loginSchema, data: loginForm});
+    errors = await validateForm({ schema: loginSchema, data: loginForm });
     if (!errors) await handleLogin(loginForm);
   }
 </script>
@@ -127,15 +126,15 @@ expect(errors).toStrictEqual({
       <label for="email">Email</label>
       {#if errors?.email}<span class="error">{errors.email}</span>{/if}
       <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="johnny.appleseed@example.com"
-          required="required"
-          aria-label="email"
-          aria-required="true"
-          style="margin-bottom: 0;"
-          bind:value="{loginForm.email}"
+        id="email"
+        name="email"
+        type="email"
+        placeholder="johnny.appleseed@example.com"
+        required="required"
+        aria-label="email"
+        aria-required="true"
+        style="margin-bottom: 0;"
+        bind:value="{loginForm.email}"
       />
     </div>
 
@@ -143,21 +142,21 @@ expect(errors).toStrictEqual({
       <label for="password">Password</label>
       {#if errors?.password}<span class="error">{errors.password}</span>{/if}
       <input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="***************"
-          required="required"
-          aria-label="password"
-          aria-required="true"
-          bind:value="{loginForm.password}"
+        id="password"
+        name="password"
+        type="password"
+        placeholder="***************"
+        required="required"
+        aria-label="password"
+        aria-required="true"
+        bind:value="{loginForm.password}"
       />
       <a class="forgot-password" href="/forgot_password">Forgot Password?</a>
     </div>
 
     <div class="form-control inline">
       <label for="rememberMe">Remember Me</label>
-      <input id="rememberMe" type="checkbox" bind:checked="{loginForm.rememberMe}"/>
+      <input id="rememberMe" type="checkbox" bind:checked="{loginForm.rememberMe}" />
     </div>
 
     <div class="form-submit">

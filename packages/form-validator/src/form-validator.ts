@@ -5,7 +5,10 @@ type FormData = { schema: z.Schema; data: any };
 export type Errors = Record<string, any>;
 export type ValidationResponse = undefined | Errors;
 
-export async function validateForm(formData: FormData, options?: { flatResult?: boolean }): Promise<ValidationResponse> {
+export async function validateForm(
+  formData: FormData,
+  options?: { flatResult?: boolean },
+): Promise<ValidationResponse> {
   const { schema, data } = formData;
 
   const result = await schema.safeParseAsync(data);

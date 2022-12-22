@@ -18,8 +18,7 @@ export abstract class AbstractStorage {
     try {
       this.adapter.setItem(this.storagePrefix + key, toStore(value));
       return true;
-    } catch (e) {
-    }
+    } catch (e) {}
     return false;
   }
 
@@ -67,7 +66,7 @@ export function toStore(value: unknown): string {
     case "undefined":
       return superJason.stringify(null);
     default:
-      return superJason.stringify(value)
+      return superJason.stringify(value);
   }
 }
 
@@ -78,8 +77,7 @@ export function fromStore<T = unknown>(item: unknown): T | null {
 
   try {
     return superJason.parse(item);
-  } catch (e) {
-  }
+  } catch (e) {}
 
-  return item as T ?? null;
+  return (item as T) ?? null;
 }

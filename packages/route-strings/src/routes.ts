@@ -1,13 +1,11 @@
-
 // https://type-level-typescript.com/
-type ParseUrlParams<url> =
-  url extends `${infer path}(${infer optionalPath})`
-    ? ParseUrlParams<path> & Partial<ParseUrlParams<optionalPath>>
-    : url extends `${infer start}/${infer rest}`
-      ? ParseUrlParams<start> & ParseUrlParams<rest>
-      : url extends `:${infer param}`
-        ? { [k in param]: string | number }
-        : {};
+type ParseUrlParams<url> = url extends `${infer path}(${infer optionalPath})`
+  ? ParseUrlParams<path> & Partial<ParseUrlParams<optionalPath>>
+  : url extends `${infer start}/${infer rest}`
+  ? ParseUrlParams<start> & ParseUrlParams<rest>
+  : url extends `:${infer param}`
+  ? { [k in param]: string | number }
+  : {};
 
 let RouteGlobalPrefix: string | undefined;
 
@@ -17,7 +15,7 @@ export function setRouteGlobalPrefix(prefix?: string) {
 
 export type RouteGroupConfig = {
   prefix?: string;
-}
+};
 
 export class RouteGroup {
   constructor(private readonly config: RouteGroupConfig) {}
@@ -28,8 +26,7 @@ export class RouteGroup {
 }
 
 export class Route<T extends string> {
-  constructor(public readonly template: T, public readonly prefix?: string) {
-  }
+  constructor(public readonly template: T, public readonly prefix?: string) {}
 
   toString(): string {
     return this.template;

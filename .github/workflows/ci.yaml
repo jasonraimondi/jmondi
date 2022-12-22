@@ -34,7 +34,7 @@ jobs:
 
   update-readme:
     if: github.event_name == 'push' && (github.ref_name == 'main')
-    needs: [ test ]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -46,14 +46,14 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
       - run: pnpm i --frozen-lockfile --production false
       - run: node bin/update-readme.mjs
       - run: |
           git config --global user.email "robot@raimondi.us"
           git config --global user.name "Jason Raimondi"
           git commit -am 'docs: update readme with latest info
-          
+
           [ci skip]' || true
           git push || true
         env:
@@ -61,7 +61,7 @@ jobs:
 
   publish:
     if: github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'next')
-    needs: [ test ]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -73,7 +73,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
       - run: pnpm i --frozen-lockfile --production false
       - if: github.ref_name == 'main'
         run: pnpm publish --recursive --filter="@jmondi/*" --access=public

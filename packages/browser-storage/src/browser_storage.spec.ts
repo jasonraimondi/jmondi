@@ -93,4 +93,3 @@ describe("abstract storage spec", () => {
     expect(testStorage.get("1")).toBeNull();
   });
 });
-

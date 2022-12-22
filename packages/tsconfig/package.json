@@ -4,13 +4,17 @@
   "author": "Jason Raimondi <jason@raimondi.us>",
   "description": "Default tsconfig.json",
   "main": "tsconfig.json",
-  "files": ["tsconfig.json"],
+  "files": [
+    "tsconfig.json"
+  ],
   "exports": {
     "import": "./tsconfig.json",
     "require": "./tsconfig.json"
   },
   "scripts": {},
-  "keywords": ["tsconfig.json"],
+  "keywords": [
+    "tsconfig.json"
+  ],
   "license": "MIT",
   "private": false
 }

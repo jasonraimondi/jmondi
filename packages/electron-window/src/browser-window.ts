@@ -8,7 +8,7 @@ export const environment = {
 export type Config = {
   mainUrl: string;
   shouldAutoUpdate?: boolean;
-}
+};
 
 export class WindowManager {
   private readonly windows = new Map<string, BrowserWindow>();
