@@ -1,9 +1,13 @@
 {
   "name": "@jmondi/form-validator",
   "description": "Form validation helper functions for zod.",
-  "version": "3.0.0",
+  "version": "3.1.0-rc.2",
   "author": "Jason Raimondi <jason@raimondi.us>",
-  "main": "dist/form-validator.js",
+  "type": "module",
+  "exports": "./dist/form-validator.js",
+  "engines": {
+    "node": ">=16.12.0"
+  },
   "files": [
     "dist",
     "src"

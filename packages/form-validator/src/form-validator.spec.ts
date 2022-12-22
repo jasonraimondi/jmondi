@@ -1,7 +1,7 @@
 import { it, describe, expect } from "vitest";
 import { z } from "zod";
 
-import { validateForm } from "./form-validator";
+import { validateForm } from "./form-validator.js";
 
 describe("with POJO data input", () => {
   const schema = z.object({
