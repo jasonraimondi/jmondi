@@ -1,21 +1,23 @@
 import { z } from "zod";
 
-type Options = { flatResult?: boolean };
+export type Options = { flatResult?: boolean };
 
-type FormDataRecord = Record<string, unknown>;
-type FormErrors = Record<string, string | Record<string, string>>;
+export type Errors = Record<string, string | Record<string, string>>;
 
-type Params<T extends z.ZodType> = {
-  schema: T;
+export type ParseFormParams<TSchema extends z.ZodType> = {
+  schema: TSchema;
   data: Record<string, unknown> | FormData;
 };
 
-export function parseForm<T extends z.ZodType>({ data, schema }: Params<T>, options: Options = {}) {
-  type FailResult = { errors: FormErrors; data?: never };
-  type PassResult = { errors?: never; data: z.infer<T> };
+export function parseForm<TSchema extends z.ZodType>(
+  { data, schema }: ParseFormParams<TSchema>,
+  options: Options = {},
+) {
+  type PassResult = { errors?: never; data: z.infer<TSchema> };
+  type FailResult = { errors: Errors; data?: never };
 
   if (data instanceof FormData) {
-    const result: FormDataRecord = {};
+    const result: Record<string, unknown> = {};
     for (const [key, value] of data.entries()) {
       result[key] = value;
     }
@@ -28,7 +30,7 @@ export function parseForm<T extends z.ZodType>({ data, schema }: Params<T>, opti
     return { data: result.data } as PassResult;
   }
 
-  const errors = result.error.errors.reduce<FormErrors>((prev, next) => {
+  const errors = result.error.errors.reduce<Errors>((prev, next) => {
     let result = { ...prev };
 
     if (options?.flatResult) {
