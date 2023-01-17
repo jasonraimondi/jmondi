@@ -37,7 +37,7 @@ describe("with POJO data input", () => {
     });
   });
 
-  it.only("ignores optional fields", async () => {
+  it("ignores optional fields", async () => {
     const data = {};
     const schema = z.object({ nickname: z.number().optional() });
 
